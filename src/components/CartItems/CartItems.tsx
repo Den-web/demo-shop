@@ -46,22 +46,27 @@ const CartItems = () => {
                 />
               </div>
               <div className={styles.infoContainer}>
-                  <p className={styles.title}>
-                    {item.product.name}{" "}
-                    <button
-                      className={styles.removeItem}
-                      onClick={() =>
-                        removeFromCart(item.product.id, item.size || "")
-                      }
-                    >
-                      X
-                    </button>
-                  </p>
+                <p className={styles.title}>
+                  {item.product.name}{" "}
+                  <button
+                    className={styles.removeItem}
+                    onClick={() =>
+                      removeFromCart(item.product.id, item.size || "")
+                    }
+                  >
+                    <Image
+                      src="/icon/trash.svg"
+                      alt="trash"
+                      width={20}
+                      height={20}
+                    />
+                  </button>
+                </p>
                 <p className={styles.description}>{item.product.description}</p>
 
                 <div className={styles.controlContainer}>
                   <p className={styles.price}>
-                    ₴ 
+                    ₴
                     {(getItemPrice(item) * item.quantity).toLocaleString(
                       "uk-UA",
                       {
