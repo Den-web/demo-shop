@@ -170,7 +170,7 @@ const CartSummary = () => {
                   </div>
                 </div>
                 <div className={styles.deliveryPrice}>
-                  ₴{deliveryOptions.express.price}
+                  ${deliveryOptions.express.price}
                 </div>
               </label>
             </div>
@@ -179,12 +179,12 @@ const CartSummary = () => {
         {appliedDiscount && (
           <div className={styles.discountAmount}>
             <p>Discount ({appliedDiscount.code}):</p>
-            <p>-₴{discountAmount.toFixed(2)}</p>
+            <p>-${discountAmount.toFixed(2)}</p>
           </div>
         )}
         <div className={styles.summaryTotal}>
           <h3>Total</h3>
-          <p>₴{total.toFixed(2)}</p>
+          <p>${total.toFixed(2)}</p>
         </div>
       </div>
 

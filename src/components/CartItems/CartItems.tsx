@@ -41,7 +41,7 @@ const CartItems = () => {
                 <Image
                   alt={item.product.name}
                   height={148}
-                  src={item.product.mainImage}
+                  src={item.product.mainImage ?? "images/product.png"}
                   width={148}
                 />
               </div>
@@ -66,9 +66,9 @@ const CartItems = () => {
 
                 <div className={styles.controlContainer}>
                   <p className={styles.price}>
-                    ₴
+                    $
                     {(getItemPrice(item) * item.quantity).toLocaleString(
-                      "uk-UA",
+                      "en-US",
                       {
                         minimumFractionDigits: 0,
                         maximumFractionDigits: 2
