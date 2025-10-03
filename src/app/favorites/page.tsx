@@ -3,31 +3,36 @@ import React from "react";
 import { useFavorites } from "@/context/FavoritesContext";
 import Link from "next/link";
 import CatalogCard from "@/components/CatalogCard/CatalogCard";
+import styles from "./FavoritesPage.module.scss";
+import Button from "@/components/Button/Button";
+import { useRouter } from "next/navigation";
 
 const FavoritesPage = () => {
   const { favorites, clearFavorites } = useFavorites();
-
+  const router = useRouter();
   return (
     <section className="container">
-      <h1 style={{ margin: "24px 0" }}>Favorites</h1>
-      {favorites.length === 0 ? (
-        <p>
-          Nothing here yet. <Link href="/catalog">Go to catalog</Link>
-        </p>
-      ) : (
-        <>
-          <button onClick={clearFavorites} style={{ marginBottom: 16 }}>Clear all</button>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(292px, 1fr))", gap: 24 }}>
-            {favorites.map((product) => (
-              <CatalogCard key={product.id} product={product} />
-            ))}
-          </div>
-        </>
-      )}
+      <div className={styles.favoritesContainer}>
+        {favorites.length === 0 ? (
+          <p>
+            Nothing here yet. <Link href="/catalog">Go to catalog</Link>
+          </p>
+        ) : (
+          <>
+            <div className={styles.grid}>
+              {favorites.map((product) => (
+                <CatalogCard key={product.id} product={product} perRow={2} />
+              ))}
+            </div>
+          </>
+        )}
+       <div className={styles.buttonsContainer}>
+        <Button onClick={clearFavorites}>Clear favorites</Button>
+        <Button onClick={() => router.push("/catalog")}>Go to catalog</Button>
+       </div>
+      </div>
     </section>
   );
 };
 
 export default FavoritesPage;
-
-

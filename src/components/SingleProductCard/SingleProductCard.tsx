@@ -29,14 +29,18 @@ const SingleProductCard: React.FC<SingleProductCardProps> = ({ product }) => {
     <div className={styles.card}>
       <div className={styles.imageContainer}>
         {product.mainImage && (
-          <Image
-            alt={product.name}
-            className={styles.productImage}
-            height={500}
-            width={500}
-            quality={80}
-            src={product.mainImage}
-          />
+          <div className={styles.imageWrapper}>
+            {product.mainImage && (
+              <Image
+                alt={product.name}
+                className={styles.productImage}
+                height={500}
+                width={500}
+                quality={80}
+                src={product.mainImage}
+              />
+            )}
+          </div>
         )}
 
         {product.status === "new" && (

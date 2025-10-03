@@ -142,7 +142,7 @@ const CatalogProductCard: React.FC<ProductCardProps> = ({ products }) => {
                     onClick={e => { e.preventDefault(); e.stopPropagation(); handleAddToCart(); }}
                     style={addedImpact ? { backgroundColor: '#3ecf4a', color: '#fff', transition: 'background 0.3s, color 0.3s' } : {}}
                   >
-                    {addedImpact ? 'Додано!' : 'ДОДАТИ В КОШИК'}
+                    {addedImpact ? 'ADDED' : 'TO CART'}
                   </Button>
                   </>
                 ) : (
