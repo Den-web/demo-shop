@@ -9,7 +9,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "test": "npx jest",
@@ -17,7 +17,7 @@
     "test:coverage": "npx jest --coverage",
     "test:ci": "npx jest --ci --coverage",
     "type-check": "tsc --noEmit",
-    "lint:fix": "eslint . --ext .ts,.tsx --fix"
+    "lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "@use-gesture/react": "^10.3.1",

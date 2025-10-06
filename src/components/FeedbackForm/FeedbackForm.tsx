@@ -76,8 +76,18 @@ const FeedbackForm = () => {
             className={`${styles.feedbackInput} ${errors.phoneNumber ? styles.inputError : ""}`}
             placeholder="+480 __ ___ __ __"
             type="tel"
-            onChange={(event) => handlePhoneChange(event, setValue)}
-            onFocus={(event) => handlePhoneChange(event, setValue)}
+            onChange={(event) =>
+              handlePhoneChange(
+                event,
+                (field, value) => setValue(field as "phoneNumber", value),
+                "phoneNumber"
+              )}
+            onFocus={(event) =>
+              handlePhoneChange(
+                event,
+                (field, value) => setValue(field as "phoneNumber", value),
+                "phoneNumber"
+              )}
           />
           <Icon
             className={styles.inputIconPhone}
