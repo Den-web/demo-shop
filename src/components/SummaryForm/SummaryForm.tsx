@@ -41,7 +41,11 @@ const SummaryForm = forwardRef(function SummaryForm({ onFormChange }: SummaryFor
   }));
 
   const handlePhoneInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    handlePhoneChange(e, (field, value) => setValue(field, value, { shouldValidate: true }));
+    handlePhoneChange(
+      e,
+      (_field, value) => setValue("phone", value, { shouldValidate: true }),
+      "phone"
+    );
   };
 
   return (
