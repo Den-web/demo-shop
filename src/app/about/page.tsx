@@ -4,6 +4,7 @@ import styles from "./AboutPage.module.scss";
 import Image from "next/image";
 import Link from "next/link";
 import Button from "@/components/Button/Button";
+import SpecialTitle from "@/components/SpecialTitle/SpecialTitle";
 
 const AboutPage = () => {
   return (
@@ -29,7 +30,13 @@ const AboutPage = () => {
             priority
           />
           <div className={styles.story_textBlock}>
-            <h2 className={styles.story_textHeader}> OUR STORY</h2>
+            <h2 className={styles.story_textHeader}>
+              {" "}
+              OUR{" "}
+              <SpecialTitle color="#907272" size="30px" mobileSize="30px">
+                STORY
+              </SpecialTitle>{" "}
+            </h2>
             <p className={styles.story_textText}>
               Nina candles was born from the idea of making beauty natural and
               accessible. Each product combines simplicity, elegance, and care
@@ -47,7 +54,11 @@ const AboutPage = () => {
       <div className={styles.values}>
         <h2 className={styles.valuesTitle}>
           <span>OUR </span>
-          <em>VALUES</em>
+          <em>
+            <SpecialTitle color="#907272" size="30px" mobileSize="30px">
+              VALUES
+            </SpecialTitle>{" "}
+          </em>
         </h2>
         <div className={styles.valuesGrid}>
           <div className={styles.valueCard}>
