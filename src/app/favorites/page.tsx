@@ -6,6 +6,12 @@ import CatalogCard from "@/components/CatalogCard/CatalogCard";
 import styles from "./FavoritesPage.module.scss";
 import Button from "@/components/Button/Button";
 import { useRouter } from "next/navigation";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Favorites",
+  description: "Your favorite products"
+};
 
 const FavoritesPage = () => {
   const { favorites, clearFavorites } = useFavorites();

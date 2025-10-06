@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { MainPageClient } from "./MainPageClient";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://hairexpertreco.com"),
+  metadataBase: new URL("https://OrcestrAI.com"),
   title: "Candles",
   description: "Candles for your home",
   openGraph: {
