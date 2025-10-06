@@ -10,6 +10,7 @@ import Image from "next/image";
 import Carousel from "react-spring-3d-carousel";
 import { useSwipeable } from "react-swipeable";
 import Link from "next/link";
+import { useFavorites } from "@/context/FavoritesContext";
 
 export interface ProductCardProps {
   products: Product[];
@@ -25,6 +26,7 @@ const CatalogProductCard: React.FC<ProductCardProps> = ({ products }) => {
   const { addToCart } = useCartContext();
   const [addedImpact, setAddedImpact] = useState(false);
   const [quantity, setQuantity] = useState(1);
+  const { toggleFavorite, isFavorite } = useFavorites();
 
   // Все товары
   const allProducts = useMemo(() => products, [products]);
@@ -92,6 +94,18 @@ const CatalogProductCard: React.FC<ProductCardProps> = ({ products }) => {
               style={{ textDecoration: "none", color: "inherit" }}
               tabIndex={-1}
             >
+              <button
+                type="button"
+                className={styles.iconContainer}
+                aria-label="Toggle favorite"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  toggleFavorite(product);
+                }}
+              >
+                <span style={{ fontSize: 18 }}>{isFavorite(product.id) ? "❤" : "♡"}</span>
+              </button>
               {product.mainImage ? (
                 <Image
                   alt={product.name}
@@ -165,6 +179,18 @@ const CatalogProductCard: React.FC<ProductCardProps> = ({ products }) => {
             </Link>
           ) : (
             <div key={product.id} className={styles.slide}>
+              <button
+                type="button"
+                className={styles.iconContainer}
+                aria-label="Toggle favorite"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  toggleFavorite(product);
+                }}
+              >
+                <span style={{ fontSize: 18 }}>{isFavorite(product.id) ? "❤" : "♡"}</span>
+              </button>
               {product.mainImage ? (
                 <Image
                   alt={product.name}

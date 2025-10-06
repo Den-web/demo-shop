@@ -2,15 +2,14 @@ import React, { useState, useEffect, useMemo, useCallback } from "react";
 import type { Product } from "@/types/types";
 import { useCartContext } from "@/hooks/useCartContext";
 import styles from "./ProductCard.module.scss";
-import HighlightText from "../HighLightText/HighLightText";
 import Button from "../Button/Button";
 import ButtonArrow from "../ArowButton/ArowButton";
-import Icon from "../Icon/Icon";
 import Image from "next/image";
 import Carousel from "react-spring-3d-carousel";
 import { useSwipeable } from "react-swipeable";
 import Link from "next/link";
-import ProductSizeSelector from "../ProductSizeSelector/ProductSizeSelector";
+// ProductSizeSelector is not used in this variant
+import { useFavorites } from "@/context/FavoritesContext";
 
 interface ProductCardProps {
   products: Product[];
@@ -26,13 +25,14 @@ const CatalogProductCard: React.FC<ProductCardProps> = ({ products }) => {
   const { addToCart } = useCartContext();
   const [addedImpact, setAddedImpact] = useState(false);
   const [quantity, setQuantity] = useState(1);
+  const { toggleFavorite, isFavorite } = useFavorites();
 
   const newProducts = useMemo(() => products, [products]);
 
-  const currentProduct = newProducts[currentIndex] || {};
+  const currentProduct = useMemo(() => newProducts[currentIndex] ?? null, [newProducts, currentIndex]);
 
   useEffect(() => {
-    const defaultSize = newProducts[currentIndex]?.selectedOptions?.[0] ?? null;
+    const defaultSize = newProducts[currentIndex]?.selectedOptions?.[0]?.value ?? null;
     setSelectedSize(defaultSize);
   }, [currentIndex, newProducts]);
 
@@ -72,21 +72,21 @@ const CatalogProductCard: React.FC<ProductCardProps> = ({ products }) => {
 
   const renderDescription = () => (
     <div className={styles.descriptionContainer}>
-      <p>{currentProduct.description}</p>
+      <p>{currentProduct?.description}</p>
     </div>
   );
 
   const renderPrice = () => {
     return (
       <p className={styles.priceContainer}>
-        {currentProduct.price ? `$ ${currentProduct.price * quantity} ` : "Оберіть розмір"}
+        {currentProduct?.price ? `$ ${currentProduct.price * quantity} ` : "Оберіть розмір"}
       </p>
     );
   };
 
   const slides = useMemo(
     () =>
-      newProducts.map((product, index) => ({
+          newProducts.map((product, index) => ({
         key: product.id,
         content:
           index === currentIndex ? (
@@ -97,6 +97,14 @@ const CatalogProductCard: React.FC<ProductCardProps> = ({ products }) => {
               style={{ textDecoration: 'none', color: 'inherit' }}
               tabIndex={-1}
             >
+                  <button
+                    type="button"
+                    className={styles.iconContainer}
+                    aria-label="Toggle favorite"
+                    onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggleFavorite(product); }}
+                  >
+                    <span style={{ fontSize: 18 }}>{isFavorite(product.id) ? '❤' : '♡'}</span>
+                  </button>
               
               <Image
                 alt={product.name}
@@ -104,7 +112,7 @@ const CatalogProductCard: React.FC<ProductCardProps> = ({ products }) => {
                 height={300}
                 quality={80}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                src={product.mainImage}
+                src={product.mainImage || "/images/product.png"}
                 width={300}
               />
 
@@ -159,21 +167,27 @@ const CatalogProductCard: React.FC<ProductCardProps> = ({ products }) => {
               key={index}
               className={styles.slide}
             >
-              <div>
-              </div>
+              <button
+                type="button"
+                className={styles.iconContainer}
+                aria-label="Toggle favorite"
+                onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggleFavorite(product); }}
+              >
+                <span style={{ fontSize: 18 }}>{isFavorite(product.id) ? '❤' : '♡'}</span>
+              </button>
               <Image
                 alt={product.name}
                 className={styles.productImage}
                 height={300}
                 quality={80}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                src={product.mainImage}
+                src={product.mainImage || "/images/product.png"}
                 width={300}
               />
             </div>
           )
       })),
-    [newProducts, currentIndex, selectedSize, isMobile, handleAddToCart, addedImpact]
+    [newProducts, currentIndex, selectedSize, isMobile, handleAddToCart, addedImpact, toggleFavorite, isFavorite, quantity]
   );
 
   const swipeHandlers = useSwipeable({
