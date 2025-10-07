@@ -25,7 +25,8 @@ declare global {
   }
 }
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+const RAW_BASE_URL = (process.env.NEXT_PUBLIC_API_BASE_URL || "/api").replace(/\/+$/, "");
+const API_BASE_URL = typeof window !== "undefined" ? "/api" : RAW_BASE_URL;
 
 const LiqPayButton = ({
   amount,

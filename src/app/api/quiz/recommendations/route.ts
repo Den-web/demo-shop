@@ -8,16 +8,17 @@ export async function POST(request: NextRequest) {
     console.log("Sending answers to backend:", answers);
 
     // Отправляем запрос к бэкенду для получения рекомендаций
-    const response = await fetch(
-      "https://reco-backend-two.onrender.com/api/quiz/recommendations",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ answers })
-      }
-    );
+    // Используем базовый URL из env, по умолчанию обращаемся к внешнему бэку напрямую,
+    // чтобы избежать рекурсивного вызова собственного API (/api → rewrite → /api).
+    const base = (process.env.NEXT_PUBLIC_API_BASE_URL || "https://clickone.space/api").replace(/\/+$/, "");
+    const url = `${base}/quiz/recommendations`;
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ answers })
+    });
 
     if (!response.ok) {
       const errorText = await response.text();

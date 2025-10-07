@@ -3,7 +3,9 @@ import type { Product } from "@/types/types";
 // ============
 // Базовые настройки
 // ============
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL ?? "";
+const RAW_BASE = (process.env.NEXT_PUBLIC_API_BASE_URL || "/api").replace(/\/+$/, "");
+// Всегда используем относительный путь в браузере, чтобы обойти CORS через Next.js rewrite
+const API_BASE = typeof window !== "undefined" ? "/api" : RAW_BASE;
 
 interface FetchOptions extends RequestInit {
   body?: any;
