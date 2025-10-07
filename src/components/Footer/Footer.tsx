@@ -59,6 +59,7 @@ const Footer = ({ className }: FooterProps) => {
               <SocialMediaHub>
                 <SocialMediaLinks platform={"instagram"} />
                 <SocialMediaLinks platform={"telegram"} />
+                <SocialMediaLinks platform={"viber"} />
               </SocialMediaHub>
             </div>
           </div>

@@ -207,12 +207,12 @@
   height: 58px;
   background-color: $yellow-color;
   border-radius: 58px;
-  border: 1px solid $yellow-color;
+  border: 2px solid $yellow-color;
   color: black;
 
   &:hover {
-    background-color: #fbbc058c;
-    border-color: #fbbc058c;
+    background-color: $green-color;
+    border-color: $green-color
   }
 }
 
@@ -221,11 +221,13 @@
   height: 58px;
   background-color: transparent;
   border-radius: 58px;
-  border: 2px solid #fbbc058c;
-  color: white;
+  border: 2px solid $yellow-color;
+  color: $black-color;
 
   &:hover {
     border-color: $yellow-color;
+    background-color: $yellow-color;
+    color: $white-color;
   }
 }
 

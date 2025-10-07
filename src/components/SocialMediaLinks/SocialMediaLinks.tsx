@@ -20,6 +20,10 @@ const SocialMediaIcon: React.FC<SocialMediaIconProps> = ({
       iconSrc = "/icon/telegram.svg";
       link = CONTACTS.telegramHref;
       break;
+    case "viber":
+      iconSrc = "/icon/viber.svg";
+      link = CONTACTS.viberHref;
+      break;
     default:
       iconSrc = "/icon/instagram.svg";
       link = CONTACTS.instagramHref;

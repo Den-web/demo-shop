@@ -5,6 +5,17 @@ import reactPlugin from "eslint-plugin-react";
 import reactHooksPlugin from "eslint-plugin-react-hooks";
 
 export default [
+  // Ignore build and vendor outputs
+  {
+    ignores: [
+      "**/.next/**",
+      "**/node_modules/**",
+      "**/coverage/**",
+      "**/dist/**",
+      "**/.turbo/**",
+      "**/out/**"
+    ]
+  },
   js.configs.recommended,
   // Base configuration for all JavaScript files
   {
@@ -26,6 +37,29 @@ export default [
         expect: "readonly",
         beforeEach: "readonly",
         afterEach: "readonly"
+      }
+    }
+  },
+  // Jest and test files configuration
+  {
+    files: [
+      "**/*.test.{js,jsx,ts,tsx}",
+      "**/__tests__/**/*.{js,jsx,ts,tsx}",
+      "jest.setup.js"
+    ],
+    languageOptions: {
+      globals: {
+        // Jest
+        jest: "readonly",
+        describe: "readonly",
+        it: "readonly",
+        test: "readonly",
+        expect: "readonly",
+        beforeEach: "readonly",
+        afterEach: "readonly",
+        // jsdom/browser
+        window: "readonly",
+        document: "readonly"
       }
     }
   },

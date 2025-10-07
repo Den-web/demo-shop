@@ -69,35 +69,46 @@
     max-width: 100%;
     padding: 0 10px;
   }
+
   .navBar,
   .navBarBtns {
     display: none !important;
   }
+
   .content {
     justify-content: start;
   }
+
   .call_btn {
     display: none;
   }
+
   .active_btns {
     margin-left: auto;
   }
 }
+
 .badge {
   position: absolute;
-  top: -10px;
-  right: -10px;
-  background: #ff0000; 
-  color: #fff;
-  border-radius: 50%;
-  font-size: 12px;
-  line-height: 16px;
-  min-width: 14px;
-  height: 14px;
-  text-align: center;
+  top: -22px;
+  right: -11px;
+  background: red;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  width: 24px;
+  height: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 600;
-  padding: 0 4px;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  border: 2px solid white;
+
+  @media (max-width: $breakpoint-mobile) {
+    top: -13px;
+    right: -8px;
+    width: 18px;
+    height: 18px;
+  }
 }

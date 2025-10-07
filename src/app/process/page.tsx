@@ -5,6 +5,7 @@ import Image from "next/image";
 import dynamic from "next/dynamic";
 import { fetchProducts } from "@/services/products";
 import type { Product } from "@/types/types";
+import SpecialTitle from "@/components/SpecialTitle/SpecialTitle";
 
 
 const ProductCard = dynamic(
@@ -40,7 +41,9 @@ const ProcessPage = () => {
               priority
             />
             <div className={styles.banner_text}>
-              <h2 className={styles.banner_textHeader}> OUR PROCESS</h2>
+              <h2 className={styles.banner_textHeader}> OUR <SpecialTitle color="#907272" size="64px" mobileSize="30px">
+                PROCESS
+              </SpecialTitle> </h2>
               <p className={styles.banner_textText}>
                 From the first spark of an idea to the warm glow in your home,
                 every candle we make carries care, quality, and a touch of
@@ -55,7 +58,9 @@ const ProcessPage = () => {
           <div className={styles.howGrid}>
             <ol className={styles.howList}>
               <li className={styles.howItem}>
-                <span className={styles.howNum}>1</span>
+                <span className={styles.howNum}><SpecialTitle color="#907272" size="30px" mobileSize="30px">
+                1
+              </SpecialTitle> </span>
                 <div className={styles.howItemBody}>
                   <h3 className={styles.howItemTitle}>INSPIRATION & DESIGN</h3>
                   <p className={styles.howItemText}>
@@ -66,7 +71,9 @@ const ProcessPage = () => {
                 </div>
               </li>
               <li className={styles.howItem}>
-                <span className={styles.howNum}>2</span>
+                <span className={styles.howNum}><SpecialTitle color="#907272" size="30px" mobileSize="30px">
+                2
+              </SpecialTitle> </span>
                 <div className={styles.howItemBody}>
                   <h3 className={styles.howItemTitle}>PREMIUM INGREDIENTS</h3>
                   <p className={styles.howItemText}>
@@ -78,7 +85,9 @@ const ProcessPage = () => {
                 </div>
               </li>
               <li className={styles.howItem}>
-                <span className={styles.howNum}>3</span>
+                <span className={styles.howNum}><SpecialTitle color="#907272" size="30px" mobileSize="30px">
+                3
+              </SpecialTitle> </span>
                 <div className={styles.howItemBody}>
                   <h3 className={styles.howItemTitle}>
                     HAND-POURING WITH CARE
@@ -91,7 +100,9 @@ const ProcessPage = () => {
                 </div>
               </li>
               <li className={styles.howItem}>
-                <span className={styles.howNum}>4</span>
+                <span className={styles.howNum}><SpecialTitle color="#907272" size="30px" mobileSize="30px">
+                4
+              </SpecialTitle> </span>
                 <div className={styles.howItemBody}>
                   <h3 className={styles.howItemTitle}>CURING & TESTING</h3>
                   <p className={styles.howItemText}>

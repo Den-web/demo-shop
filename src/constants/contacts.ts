@@ -7,6 +7,8 @@ export const CONTACTS = {
   instagramHref: "https://www.instagram.com/candles.nina?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
   telegramName: "Telegram",
   telegramHref: "https://t.me/+380990000000",
+  viberName: "Viber",
+  viberHref: "https://chat.viber.com/en",
   address: "Ostrobramska 75C, 04-175 Warszawa, Polska",
   time: "Графiк роботи: 09:00 - 20:00 Без вихiдних"
 };

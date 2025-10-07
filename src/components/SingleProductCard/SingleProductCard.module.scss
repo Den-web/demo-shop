@@ -6,7 +6,6 @@
   margin-top: 140px;
   margin-bottom: 20px;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -26,13 +25,50 @@
     max-width: 100%;
     order: 0;
   }
+
+  .imageWrapper {
+    position: relative;
+    display: inline-block;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: -25px;
+      left: -25px;
+      right: -25px;
+      bottom: -25px;
+      border-radius: 50%; // круг
+      background: radial-gradient(
+        circle,
+        rgba(209, 199, 199, 0.4) 0%,   // яркая часть у картинки
+        rgba(196, 179, 179, 0.2) 50%,  // середина
+        rgba(196, 179, 179, 0) 100%    // края полностью прозрачные
+      );
+      z-index: -1;
+      filter: blur(20px); // мягкость свечения
+    }
+
+    .productImage {
+      display: block;
+      position: relative;
+      z-index: 1;
+      max-width: 100%;
+      max-height: 400px;
+      object-fit: contain;
+      border-radius: 50%; // чтобы совпадало с ореолом
+    }
+  }
 }
+
+
+
 .headingContainer {
   display: flex;
   flex-direction: column;
   padding: 0 40px;
   margin-top: 20px;
 }
+
 .descriptionContainer {
   display: flex;
   flex-direction: column;
@@ -50,219 +86,26 @@
   width: 100%;
   box-sizing: border-box;
   text-align: left;
-  position: relative; /* Для позиционирования стрелки */
+  position: relative;
 
-  /* Стиль стрелки */
   &::after {
-    content: "▼"; /* Стрелка вниз */
+    content: "▼";
     position: absolute;
-    right: 10px; /* Отступ от правого края */
+    right: 10px;
     top: 50%;
     transform: translateY(-50%);
     font-size: 16px;
-    transition: transform 0.3s ease; /* Плавный переход */
+    transition: transform 0.3s ease;
   }
 
-  /* Когда раскрыто, изменим стрелку */
   &.is-open::after {
-    content: "▲"; /* Стрелка вверх */
-    transform: translateY(-50%) rotate(180deg); /* Поворот на 180° */
+    content: "▲";
+    transform: translateY(-50%) rotate(180deg);
   }
 
-  /* Состояние при закрытом collapsible */
   &.is-closed::after {
-    content: "▼"; /* Стрелка вниз */
+    content: "▼";
     transform: translateY(-50%);
   }
 }
 
-.productImage {
-  max-width: 100%;
-  max-height: 400px;
-  object-fit: contain;
-  border-radius: 4px;
-}
-
-.newBadge {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: #ff4d4d;
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  font-weight: bold;
-}
-
-.infoContainer {
-  flex: 1 1 45%;
-  max-width: 45%;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  color: $black-color;
-
-  @media (max-width: 768px) {
-    max-width: 100%;
-    order: 1;
-  }
-
-  .productName {
-    font-size: 48px;
-    font-weight: bold;
-    margin: 0;
-
-    @media (max-width: 768px) {
-      font-size: 32px;
-    }
-  }
-
-  .sizes {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-
-    label {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.5rem 1rem;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      cursor: pointer;
-
-      &:hover {
-        border-color: #999;
-      }
-
-      input[type="radio"] {
-        margin: 0;
-      }
-    }
-  }
-
-  .sizeAndPrice {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 40px;
-    margin-top: 20px;
-    min-height: 50px;
-    gap: 20px;
-    flex-wrap: wrap;
-
-    @media (max-width: 768px) {
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 20px;
-      gap: 10px;
-      min-height: auto;
-    }
-  }
-
-  .priceContainer {
-    font-size: 1.25rem;
-    margin: 0;
-  }
-
-  .price {
-    font-size: 18px;
-    font-weight: bold;
-  }
-
-  .addToCart {
-    margin-top: auto;
-    width: 100%;
-  }
-
-  .additionalInfo {
-    display: flex;
-    flex-direction: column;
-    margin: 20px 0;
-    padding: 0 40px;
-    gap: 20px;
-
-    @media (max-width: 768px) {
-      padding: 0 20px;
-    }
-
-    .infoItem {
-      margin: 8px 0;
-      font-size: 16px;
-      line-height: 1.5;
-
-      strong {
-        margin-right: 5px;
-      }
-    }
-  }
-}
-
-@media (max-width: 768px) {
-  .card {
-    flex-direction: column;
-  }
-
-  .imageContainer {
-    order: 0; /* картинка первая */
-    max-width: 100%;
-  }
-
-  .descriptionContainer {
-    gap: 20px;
-    order: 3; /* описание после размера и кнопки */
-  }
-
-  .sizeAndPrice {
-    order: 2; /* размер и цена */
-  }
-
-  .additionalInfo {
-    gap: 20px;
-    order: 4; /* дополнительная информация */
-  }
-
-  .productName {
-    font-size: 32px;
-  }
-
-  .sizes {
-    gap: 0.5rem;
-  }
-
-  .priceContainer {
-    font-size: 1.25rem;
-  }
-
-  .addToCart {
-    margin-top: auto;
-    width: 100%;
-  }
-
-  .descriptionContainer {
-    padding: 0 20px;
-  }
-}
-
-.added {
-  background-color: #3ecf4a !important;
-  color: #fff !important;
-  animation: impactAdded 0.8s;
-  transition: background 0.3s, color 0.3s;
-}
-
-@keyframes impactAdded {
-  0% {
-    transform: scale(1);
-    box-shadow: 0 0 0 0 #3ecf4a44;
-  }
-  50% {
-    transform: scale(1.08);
-    box-shadow: 0 0 16px 4px #3ecf4a88;
-  }
-  100% {
-    transform: scale(1);
-    box-shadow: 0 0 0 0 #3ecf4a00;
-  }
-}
