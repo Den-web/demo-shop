@@ -39,6 +39,24 @@
   gap: 36px;
   z-index: 1000;
   max-width: 82%;
+  position: relative;
+}
+
+
+.textField::before {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  left: -60px; 
+  top: -80px;
+  width: 60vw;
+  height: calc(60vw * 0.84);
+  max-width: 753px;
+  max-height: 633px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(250, 250, 250, 0.9) 0%, rgba(250, 250, 250, 0.6) 35%, rgba(250, 250, 250, 0.2) 60%, rgba(250, 250, 250, 0) 80%);
+  filter: blur(30px);
+  z-index: -1; 
 }
 
 .slogan {
@@ -49,11 +67,11 @@
 }
 
 .text {
-  font-size: 30px;
+  font-size: 22px;
   text-align: left;
   font-weight: lighter;
   margin-bottom: 4rem;
-  max-width: 912px;
+  max-width: 684px;
   text-wrap: pretty;
   z-index: 10;
 }
@@ -109,6 +127,9 @@
     max-width: 100%;
     z-index: 10;
   }
+
+  /* Hide glow on tablet and below */
+  .textField::before { display: none; }
 
   .imageContainer {
     position: relative;

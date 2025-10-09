@@ -18,6 +18,22 @@
   }
 }
 
+.featuresTitle {
+  display:block;
+  font-size: 48px;
+  font-weight: 400;
+  text-align: left;
+  padding-left: 20px;
+  margin-bottom: 40px;
+
+  @media (max-width: $breakpoint-mobile) {
+    font-size: 30px;
+    text-align: center;
+    padding: 0;
+
+  }
+}
+
 @mixin button {
   margin-top: auto;
   width: fit-content;
@@ -55,13 +71,9 @@
   align-items: center;
   width: 100%;
   font-size: 16px;
-  padding: 100px 0;
+  padding: 0; // spacing controlled by main gap
   position: relative;
 
-  h2,
-  h3 {
-    @include visually-hidden;
-  }
 
   a {
     @include button;
@@ -82,18 +94,103 @@
   }
 }
 
+// New simplified layout like process section
+.featuresGrid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 56px;
+
+  @media (max-width: $breakpoint-mobile) {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+.featuresList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.featuresItem {
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  gap: 24px;
+  align-items: start;
+
+  @media (max-width: $breakpoint-mobile) {
+    grid-template-columns: 56px 1fr;
+    gap: 16px;
+  }
+}
+
+.featuresNum {
+  display: inline-flex;
+  width: 92px;
+  height: 92px;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+
+  @media (max-width: $breakpoint-mobile) {
+    width: 56px;
+    height: 56px;
+  }
+}
+
+.featuresItemBody {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.featuresItemTitle {
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+
+  @media (max-width: $breakpoint-tablet) {
+    font-size: 24px;
+  }
+  @media (max-width: $breakpoint-mobile) {
+    font-size: 18px;
+  }
+}
+
+.featuresItemText {
+  color: $black-color;
+  opacity: 0.9;
+  max-width: 520px;
+}
+
+.featuresImageWrap {
+  position: relative;
+  width: 100%;
+  min-height: 380px;
+
+  @media (max-width: $breakpoint-mobile) {
+    min-height: 260px;
+  }
+}
+
+.image {
+  object-fit: contain;
+}
+
 // Left side
 .featuresArticleLeft {
   @include features-article;
+
   & {
-    background-image: image-set(
-      url(/images/sections/features/left-field-desc-1x.webp) type("image/webp")
-        1x,
-      url(/images/sections/features/left-field-desc-2x.webp) type("image/webp")
-        2x,
-      url(/images/sections/features/left-field-desc-1x.png) type("image/png") 1x,
-      url(/images/sections/features/left-field-desc-2x.png) type("image/png") 2x
-    );
+    background-image: image-set(url(/images/sections/features/left-field-desc-1x.webp) type("image/webp") 1x,
+        url(/images/sections/features/left-field-desc-2x.webp) type("image/webp") 2x,
+        url(/images/sections/features/left-field-desc-1x.png) type("image/png") 1x,
+        url(/images/sections/features/left-field-desc-2x.png) type("image/png") 2x);
     width: 386px;
     height: 332px;
 
@@ -103,16 +200,10 @@
     }
 
     @media (max-width: $breakpoint-mobile) {
-      background-image: image-set(
-        url(/images/sections/features/center-field-mob-1x.webp)
-          type("image/webp") 1x,
-        url(/images/sections/features/center-field-mob-2x.webp)
-          type("image/webp") 2x,
-        url(/images/sections/features/center-field-mob-1x.png) type("image/png")
-          1x,
-        url(/images/sections/features/center-field-mob-2x.png) type("image/png")
-          2x
-      );
+      background-image: image-set(url(/images/sections/features/center-field-mob-1x.webp) type("image/webp") 1x,
+          url(/images/sections/features/center-field-mob-2x.webp) type("image/webp") 2x,
+          url(/images/sections/features/center-field-mob-1x.png) type("image/png") 1x,
+          url(/images/sections/features/center-field-mob-2x.png) type("image/png") 2x);
       top: 50%;
       left: 0;
       transform: translateY(-50%);
@@ -162,17 +253,12 @@
 
 .featuresArticleRightTop {
   @include features-article;
+
   & {
-    background-image: image-set(
-      url(/images/sections/features/right-top-field-desc-1x.webp)
-        type("image/webp") 1x,
-      url(/images/sections/features/right-top-field-desc-2x.webp)
-        type("image/webp") 2x,
-      url(/images/sections/features/right-top-field-desc-1x.png)
-        type("image/png") 1x,
-      url(/images/sections/features/right-top-field-desc-2x.png)
-        type("image/png") 2x
-    );
+    background-image: image-set(url(/images/sections/features/right-top-field-desc-1x.webp) type("image/webp") 1x,
+        url(/images/sections/features/right-top-field-desc-2x.webp) type("image/webp") 2x,
+        url(/images/sections/features/right-top-field-desc-1x.png) type("image/png") 1x,
+        url(/images/sections/features/right-top-field-desc-2x.png) type("image/png") 2x);
     width: 544px;
     height: 404px;
     bottom: 100px;
@@ -186,14 +272,10 @@
     }
 
     @media (max-width: $breakpoint-mobile) {
-      background-image: image-set(
-        url(/images/sections/features/top-field-mob-1x.webp) type("image/webp")
-          1x,
-        url(/images/sections/features/top-field-mob-2x.webp) type("image/webp")
-          2x,
-        url(/images/sections/features/top-field-mob-1x.png) type("image/png") 1x,
-        url(/images/sections/features/top-field-mob-2x.png) type("image/png") 2x
-      );
+      background-image: image-set(url(/images/sections/features/top-field-mob-1x.webp) type("image/webp") 1x,
+          url(/images/sections/features/top-field-mob-2x.webp) type("image/webp") 2x,
+          url(/images/sections/features/top-field-mob-1x.png) type("image/png") 1x,
+          url(/images/sections/features/top-field-mob-2x.png) type("image/png") 2x);
       right: 0;
       top: 10px;
       width: 290px;
@@ -225,17 +307,12 @@
 
 .featuresArticleRightBottom {
   @include features-article;
+
   & {
-    background-image: image-set(
-      url(/images/sections/features/right-bottom-desc-1x.webp)
-        type("image/webp") 1x,
-      url(/images/sections/features/right-bottom-desc-2x.webp)
-        type("image/webp") 2x,
-      url(/images/sections/features/right-bottom-desc-1x.png) type("image/png")
-        1x,
-      url(/images/sections/features/right-bottom-desc-2x.png) type("image/png")
-        2x
-    );
+    background-image: image-set(url(/images/sections/features/right-bottom-desc-1x.webp) type("image/webp") 1x,
+        url(/images/sections/features/right-bottom-desc-2x.webp) type("image/webp") 2x,
+        url(/images/sections/features/right-bottom-desc-1x.png) type("image/png") 1x,
+        url(/images/sections/features/right-bottom-desc-2x.png) type("image/png") 2x);
     width: 544px;
     height: 244px;
 
@@ -245,16 +322,10 @@
     }
 
     @media (max-width: $breakpoint-mobile) {
-      background-image: image-set(
-        url(/images/sections/features/bottom-field-mob-1x.webp)
-          type("image/webp") 1x,
-        url(/images/sections/features/bottom-field-mob-2x.webp)
-          type("image/webp") 2x,
-        url(/images/sections/features/bottom-field-mob-1x.png) type("image/png")
-          1x,
-        url(/images/sections/features/bottom-field-mob-2x.png) type("image/png")
-          2x
-      );
+      background-image: image-set(url(/images/sections/features/bottom-field-mob-1x.webp) type("image/webp") 1x,
+          url(/images/sections/features/bottom-field-mob-2x.webp) type("image/webp") 2x,
+          url(/images/sections/features/bottom-field-mob-1x.png) type("image/png") 1x,
+          url(/images/sections/features/bottom-field-mob-2x.png) type("image/png") 2x);
       bottom: 60px;
       right: 0;
       width: 291px;

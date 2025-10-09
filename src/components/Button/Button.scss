@@ -13,7 +13,7 @@
   position: relative;
   cursor: pointer;
   width: auto;
-  min-width: 117px;
+  min-width: 90px;
   white-space: nowrap;
 
   &.button--disabled {
@@ -28,7 +28,7 @@
   }
 
   &--s {
-    width: 123px;
+    width: 147px;
     height: 40px;
     font-size: 16px;
     .button__icon {
@@ -39,6 +39,15 @@
 
   &--m {
     width: 201px;
+    height: 58px;
+    font-size: 22px;
+    .button__icon {
+      width: 52px;
+      height: 52px;
+    }
+  }
+  &--header {
+    max-width: 175px;
     height: 58px;
     font-size: 22px;
     .button__icon {
@@ -115,9 +124,9 @@
   }
   &--primary {
     background-color: $button-primary;
-    color: $black-color;
+    color: $white-color;
     &:hover {
-      background-color: #fbbc058c;
+      background-color: $hover-button;
     }
     &:focus-visible {
       background-color: #e0a809;
@@ -145,6 +154,18 @@
   &--transparent {
     color: $black-color;
     border: 1px solid $button-primary;
+    &:hover {
+      outline: 1px solid #fbc000;
+    }
+    &:focus-visible {
+      outline: 3px solid #edb80b;
+    }
+    &:active {
+      outline: 1.5px solid #edb80b;
+    }
+  }
+  &--heaber {
+    color: $black-color;
     &:hover {
       outline: 1px solid #fbc000;
     }

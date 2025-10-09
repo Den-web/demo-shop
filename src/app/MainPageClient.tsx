@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import classNames from "classnames";
 import dynamic from "next/dynamic";
 import type { Product } from "@/types/types";
 import { fetchProducts } from "@/services/products";
@@ -16,7 +17,6 @@ const ProductCard = dynamic(
     loading: () => <div className={styles.loading}>Loading products...</div>
   }
 );
-
 
 export const MainPageClient = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -49,10 +49,14 @@ export const MainPageClient = () => {
     <>
       <HeroSection />
       <FeaturesSection />
+      <div className={classNames("container", styles.product_container)}>
+        <h1>TRENDING NOW</h1>
+        {" "}
+        {!loading && products.length > 0 && (
+          <ProductCard products={products} showButton={true} />
+        )}
+      </div>
 
-      {!loading && products.length > 0 && (
-        <ProductCard products={products} showButton={true} />
-      )}
       <AboutSection />
 
       <FeedbackSection />

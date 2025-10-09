@@ -1,6 +1,5 @@
 import useDeviceDetection from "@/context/useDeviceDetection";
 import Button from "../Button/Button";
-import Icon from "../Icon/Icon";
 import styles from "./HeroButtons.module.scss";
 import Link from "next/link";
 
@@ -22,12 +21,12 @@ const HeroButtons = () => {
           variant="primary"
         >
           <div className={styles.iconContainer}>
-            <Icon
+            <img
               className={styles.ButtonIcon}
-              fill="white"
-              name="icon-arrow-up-right2"
-              size={30}
-              stroke="none"
+              src="/icon/arrow-up-right.svg?v=2"
+              alt="Go to catalog"
+              width={40}
+              height={40}
             />
           </div>
           <span className={styles.button__text}>SHOP NOW</span>
@@ -35,15 +34,6 @@ const HeroButtons = () => {
       </Link>
       <Link href="/about">
         <Button size={getButtonSize()} variant="transparent">
-          <div className={styles.secondСontainer}>
-            <Icon
-              className={styles.SecondIcon}
-              fill="white"
-              name="icon-arrow-up-right2"
-              size={getButtonSize() === "s" ? 16 : 30}
-              stroke="none"
-            />
-          </div>
           <span className={styles.moreInfoText}>LEARN MORE</span>
         </Button>
       </Link>

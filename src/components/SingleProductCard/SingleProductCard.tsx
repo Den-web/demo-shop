@@ -67,25 +67,17 @@ const SingleProductCard: React.FC<SingleProductCardProps> = ({ product }) => {
         )}
 
         {product.attributes?.length ? (
-          <div className={styles.attributes}>
-            {product.attributes.map((attr) => (
-              <div key={attr.id} className={styles.attribute}>
-                <p>
-                  <strong>{attr.name}</strong>
-                  {attr.required ? " " : ""}
-                </p>
-
-                {(attr.values ?? []).length > 0 ? (
-                  <ul className={styles.attributeValues}>
-                    {(attr.values ?? []).map((val) => (
-                      <li key={val.id}>{val.value}</li>
-                    ))}
-                  </ul>
-                ) : (
-                  <p>Значение не указано</p>
-                )}
-              </div>
-            ))}
+          <div className={styles.specs}>
+            {product.attributes.map((attr) => {
+              const valueText = (attr.values ?? []).map((v) => v.value).join(", ");
+              return (
+                <div key={attr.id} className={styles.specRow}>
+                  <span className={styles.specName}>{attr.name}</span>
+                  <span className={styles.specDots} aria-hidden="true" />
+                  <span className={styles.specValue}>{valueText || "—"}</span>
+                </div>
+              );
+            })}
           </div>
         ) : (
           <p>
@@ -116,7 +108,7 @@ const SingleProductCard: React.FC<SingleProductCardProps> = ({ product }) => {
           className={addedImpact ? styles.added : ""}
           disabled={!product.stock || addedImpact}
         >
-          {!product.stock ? "Out of stock" : addedImpact ? "Added!" : "BUY"}
+          {!product.stock ? "Out of stock" : addedImpact ? "Added!" : "ADD TO CART"}
         </Button>
       </div>
     </div>

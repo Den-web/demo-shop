@@ -54,9 +54,13 @@ const Header = () => {
                   alignItems: "center"
                 }}
               >
-                <span style={{ fontSize: 22, lineHeight: 1, marginRight: 8 }}>
-                  ♡
-                </span>
+                <img
+                  src="/icon/heart.svg"
+                  alt="Favorites"
+                  width={22}
+                  height={22}
+                  style={{ display: "inline-block", marginRight: 8 }}
+                />
                 {favorites.length > 0 && (
                   <span className={styles.badge}>{favorites.length}</span>
                 )}

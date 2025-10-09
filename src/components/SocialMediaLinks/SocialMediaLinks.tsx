@@ -6,7 +6,7 @@ import { CONTACTS } from "@/constants/contacts";
 
 const SocialMediaIcon: React.FC<SocialMediaIconProps> = ({
   platform,
-  size = 64
+  size = 28
 }) => {
   let iconSrc;
   let link = "";

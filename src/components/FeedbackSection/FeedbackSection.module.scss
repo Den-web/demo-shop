@@ -2,23 +2,21 @@
 
 .feedbackSection {
   width: 100%;
-  padding: 60px 104px;
+  padding: 40px 24px; // align with container padding; main gap controls vertical rhythm
   border-radius: 50px;
-  box-shadow: 0 8px 15px 0 rgba(0, 0, 0, 0.5);
   background:rgba(144, 114, 114, 0.3);
   color: $black-color;
   border: $main-border;
   position: relative;
-  margin-bottom: 120px;
+  margin-bottom: 0;
   box-sizing: border-box;
 
   @media (max-width: $breakpoint-tablet) {
-    padding: 60px 60px;
+    padding: 32px 24px;
   }
 
   @media (max-width: $breakpoint-mobile) {
-    margin-bottom: 90px;
-
+    margin-bottom: 0;
     padding: 16px;
     border-radius: 48px;
     background:rgba(144, 114, 114, 0.3);
@@ -62,9 +60,12 @@
 }
 
 .feedbackTitle {
-  text-align: center;
+  text-align: left;
   font-weight: 400;
-  font-size: 30px;
+  font-size: 48px;
+  text-align: left;
+  padding-left: 0;
+  margin-bottom: 40px;
 
   @media (max-width: $breakpoint-tablet) {
     font-size: 20px;
@@ -74,7 +75,22 @@
   }
 
   @media (max-width: $breakpoint-mobile) {
-    font-size: 16px;
+    font-size: 30px;
+    text-align: center;
+    padding: 0;
+  }
+}
+
+.feedbackSubtitle {
+  color: #6c6c6c;
+  font-size: 18px;
+  line-height: 1.5;
+  margin: -28px 0 24px 20px;
+
+  @media (max-width: $breakpoint-mobile) {
+    font-size: 14px;
+    margin: -12px 0 16px 0;
+    text-align: center;
   }
 }
 
@@ -82,9 +98,22 @@
   display: flex;
 }
 
+.formTitle {
+  font-size: 28px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: $black-color;
+  margin: 0 0 24px 0;
+
+  @media (max-width: $breakpoint-mobile) {
+    font-size: 18px;
+    text-align: left;
+  }
+}
+
 .feedbackImgContainer {
-  width: 600px;
-  height: 440px;
+  width: 520px;
+  height: 380px;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -103,8 +132,8 @@
   }
 }
 
-.feedbackImg {
-  transform: scale(1.6);
+  .feedbackImg {
+  transform: scale(1.4);
   object-fit: contain;
   pointer-events: none;
 

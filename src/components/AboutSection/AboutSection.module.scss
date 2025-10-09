@@ -3,22 +3,26 @@
 .aboutSection {
   display: grid;
   grid-template-columns: 1fr 560px;
-  align-items: center;
+  align-items: flex-start;
   gap: 64px;
-  padding: 40px 0;
+  padding: 0; // spacing from page layout gap
 }
 
 .content {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 28px;
   color: $black-color;
 }
 
 .title {
-  font-size: 56px;
+  font-size: 48px;
   font-weight: 400;
   letter-spacing: 1px;
+  text-align: left;
+  padding-left: 0;
+ 
 }
 
 .text {
@@ -71,8 +75,9 @@
 
 @media (max-width: $breakpoint-mobile) {
   .title {
-    font-size: 36px;
-    text-align: left;
+    font-size: 30px;
+    text-align: center;
+    padding: 0;
   }
 
   .text {

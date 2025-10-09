@@ -109,12 +109,12 @@ const FeedbackForm = () => {
           variant="primary"
         >
           <div className={styles.iconContainer}>
-            <Icon
+            <img
               className={styles.feedbackButtonIcon}
-              fill="white"
-              name="icon-arrow-up-right2"
-              size={isMobile ? 20 : 30}
-              stroke="none"
+              src="/icon/arrow-up-right.svg"
+              alt="Send"
+              width={isMobile ? 20 : 40}
+              height={isMobile ? 20 : 40}
             />
           </div>
           <span className={styles.feedbackButtonText}> SEND</span>

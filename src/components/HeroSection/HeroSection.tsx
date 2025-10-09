@@ -27,14 +27,14 @@ const HeroSection = ({ className }: HeroSectionProps) => {
               CREATE A
               <SpecialTitle color="#907272" size="80px" mobileSize="44px">
                 COZY
-              </SpecialTitle> 
+              </SpecialTitle>
               ATMOSPHERE
             </h1>
-            <p className={styles.text}>
-              Discover the art of relaxation with our handcrafted candles. Each
-              scent is designed to transform your environment and elevate your
-              mood{" "}
-            </p>
+            <h1 className={styles.text}>
+              DISCOVER THE ART OF RELAXATION WITH OUR HANDCRAFTED CANDLES. EACH
+              SCENT IS DESIGNED TO TRANSFORM YOUR ENVIRONMENT AND ELEVATE YOUR
+              MOOD.
+            </h1>
             <HeroButtons />
             <div className={styles.imageCardWrapper}>
               <Image
