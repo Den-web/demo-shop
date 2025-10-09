@@ -2,8 +2,8 @@
 .icon {
   object-fit: contain;
   transition: transform 0.2s ease;
-  width: 40px;
-  height: 40px;
+  width: 28px;
+  height: 28px;
   &:hover {
     transform: scale(1.1);
   }
@@ -11,7 +11,7 @@
 
 @media (max-width: $breakpoint-mobile) {
   .icon {
-    width: 30px;
-    height: 30px;
+    width: 24px;
+    height: 24px;
   }
 }

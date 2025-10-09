@@ -4,9 +4,9 @@ import Image from "next/image";
 const AboutSection = () => {
   return (
     <section className="container">
+      <h2 className={styles.title}>ABOUT US</h2>
       <div className={styles.aboutSection}>
         <div className={styles.content}>
-          <h2 className={styles.title}>ABOUT US</h2>
           <p className={styles.text}>
             Our brand was born from a love of comfort and a desire to create
             something special with our own hands. Each candle is the result of

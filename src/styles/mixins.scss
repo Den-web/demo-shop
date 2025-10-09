@@ -26,23 +26,21 @@
 @mixin inputField {
   border: 1px solid $grey-color;
   border-radius: 25px;
-  background: rgba(255, 255, 255, 0.05);
+  background: #ffffff;
   outline: none;
   padding: 12px;
   font-size: 16px;
-  color: inherit;
+  color: $black-color;
   width: 100%;
   position: relative;
   z-index: 1;
   transition: all $transition-speed $transition-style;
 
   &:hover {
-    border-color: $yellow-color;
-    box-shadow: 0px 4px 20px 0px #fbbc054d;
+border-color: $yellow-color;
   }
 
   &:focus {
-    border-color: $yellow-color;
     border-radius: 15px;
   }
 

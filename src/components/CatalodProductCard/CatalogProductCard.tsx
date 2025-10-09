@@ -103,7 +103,12 @@ const CatalogProductCard: React.FC<ProductCardProps> = ({ products }) => {
                     aria-label="Toggle favorite"
                     onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggleFavorite(product); }}
                   >
-                    <span style={{ fontSize: 18 }}>{isFavorite(product.id) ? '❤' : '♡'}</span>
+                    <img
+                      src={isFavorite(product.id) ? '/icon/heart-filled.svg' : '/icon/heart.svg'}
+                      alt={isFavorite(product.id) ? 'Remove from favorites' : 'Add to favorites'}
+                      width={18}
+                      height={18}
+                    />
                   </button>
               
               <Image
@@ -173,7 +178,12 @@ const CatalogProductCard: React.FC<ProductCardProps> = ({ products }) => {
                 aria-label="Toggle favorite"
                 onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggleFavorite(product); }}
               >
-                <span style={{ fontSize: 18 }}>{isFavorite(product.id) ? '❤' : '♡'}</span>
+                <img
+                  src={isFavorite(product.id) ? '/icon/heart-filled.svg' : '/icon/heart.svg'}
+                  alt={isFavorite(product.id) ? 'Remove from favorites' : 'Add to favorites'}
+                  width={18}
+                  height={18}
+                />
               </button>
               <Image
                 alt={product.name}
