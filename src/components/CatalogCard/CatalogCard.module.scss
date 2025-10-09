@@ -1,5 +1,10 @@
 @use "@/styles/variables" as *;
-
+.cardContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap:16px;
+}
 .card {
   border: $main-border;
   border-radius: 20px;
@@ -10,6 +15,7 @@
   width: 292px;
   flex-direction: column;
   justify-content: flex-start;
+  gap:16px;
 
   @media (max-width: $breakpoint-mobile) {
     width: 159px;
@@ -91,9 +97,7 @@
   z-index: 2;
 
   &:hover {
-    box-shadow: 0 0 2px 1px rgba(255, 255, 0, 0.6);
-    /* жёлтое размытие */
-    transition: all 0.3s ease;
+   cursor: pointer;
   }
 
   &Icon {

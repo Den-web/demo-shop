@@ -7,6 +7,8 @@ export type ButtonSize =
   | "pr"
   | "xl"
   | "xxl"
+  | "header"
+
   | "black1"
   | "black2"
   | "black3";
@@ -16,7 +18,7 @@ export type ButtonState =
   | "focus"
   | "disabled"
   | "pressed";
-export type ButtonVariant = "primary" | "secondary" | "black" | "transparent";
+export type ButtonVariant = "primary" | "secondary" | "black" | "transparent"|"header";
 export interface ButtonProps {
   size?: ButtonSize;
   disabled?: boolean;

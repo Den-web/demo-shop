@@ -1,7 +1,6 @@
 import styles from "./ArowButton.module.scss";
 import React from "react";
 import type { ButtonArrowProps } from "./types/ArowButton";
-import Icon from "../Icon/Icon";
 
 const ButtonArrow: React.FC<ButtonArrowProps> = ({
   className,
@@ -16,20 +15,20 @@ const ButtonArrow: React.FC<ButtonArrowProps> = ({
       onTouchStart={onTouchEnd}
     >
       {icon === "left" ? (
-        <Icon
+        <img
           className={styles.arrowLeft}
-          fill="black"
-          name="icon-arrow-right2"
-          size={30}
-          stroke="none"
+          src="/icon/chevron-left.svg"
+          alt="Previous"
+          width={24}
+          height={24}
         />
       ) : (
-        <Icon
+        <img
           className={styles.arrowRight}
-          fill=" black"
-          name="icon-arrow-right2"
-          size={30}
-          stroke="none"
+          src="/icon/chevron-right.svg"
+          alt="Next"
+          width={24}
+          height={24}
         />
       )}
     </button>

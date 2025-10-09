@@ -116,7 +116,7 @@ const SummarySection = () => {
                 )}
                 <div className={styles.controlContainer}>
                   <p className={styles.quantity}>Quantity: {item.quantity}</p>
-                  <p className={styles.price}>{getItemPrice(item)} UAH</p>
+                  <p className={styles.price}>$ {getItemPrice(item)}</p>
                 </div>
               </div>
             </li>

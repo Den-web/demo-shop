@@ -15,7 +15,7 @@ const CatalogCard = memo(({ product }: CatalogCardProps) => {
   }, [product]);
 
   return (
-    <div>
+    <div className={styles.cardContainer}>
       <Link
         href={`/${product.id}`}
         className={styles.card}
@@ -39,7 +39,14 @@ const CatalogCard = memo(({ product }: CatalogCardProps) => {
           aria-label="Toggle favorite"
           onClick={(e) => { e.preventDefault(); toggleFavorite(product); }}
         >
-          <span className={styles.infoBtnIcon}>{isFavorite(product.id) ? "❤" : "♡"}</span>
+          <span className={styles.infoBtnIcon}>
+            <img
+              src={isFavorite(product.id) ? "/icon/heart-filled.svg" : "/icon/heart.svg"}
+              alt={isFavorite(product.id) ? "Remove from favorites" : "Add to favorites"}
+              width={18}
+              height={18}
+            />
+          </span>
         </button>
 
 

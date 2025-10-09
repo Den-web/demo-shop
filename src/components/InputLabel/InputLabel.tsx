@@ -10,8 +10,8 @@ const InputLabel = ({ htmlFor, children, required }: InputLabelProps) => {
         <Icon
           className={styles.inputIconStar}
           name="icon-star"
-          size={20}
-          stroke="#fbc000"
+          size={14}
+          stroke="#907272"
         />
       )}
     </label>
