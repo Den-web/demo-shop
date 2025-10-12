@@ -3,6 +3,7 @@
 
 .title {
   font-size: large;
+  margin-top: 24px;
 }
 
 .productsList {
@@ -16,7 +17,7 @@
 
 .newProducts {
   display: flex;
-  margin-top: 100px;
+  margin-top: 60px;
   flex-direction: column;
   gap: 20px;
 }
