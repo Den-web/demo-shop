@@ -200,3 +200,16 @@
   }
 }
 
+.goodToKnow {
+  margin: 8px 0 0;
+  padding-left: 18px;
+  color: $black-color;
+  opacity: 0.9;
+
+  li {
+    list-style: disc;
+    margin-bottom: 4px;
+    font-size: 14px;
+  }
+}
+

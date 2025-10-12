@@ -66,15 +66,21 @@ const SingleProductCard: React.FC<SingleProductCardProps> = ({ product }) => {
           </p>
         )}
 
-        {product.attributes?.length ? (
-          <div className={styles.specs}>
+        {/* Pretty attributes grid with chips */}
+        {Array.isArray(product.attributes) && product.attributes.length > 0 ? (
+          <div className={styles.attributes}>
             {product.attributes.map((attr) => {
-              const valueText = (attr.values ?? []).map((v) => v.value).join(", ");
+              const values = (attr.values ?? []).map((v) => v.value).filter(Boolean);
               return (
-                <div key={attr.id} className={styles.specRow}>
-                  <span className={styles.specName}>{attr.name}</span>
-                  <span className={styles.specDots} aria-hidden="true" />
-                  <span className={styles.specValue}>{valueText || "—"}</span>
+                <div key={attr.id} className={styles.attribute}>
+                  <p><strong>{attr.name}</strong></p>
+                  <ul className={styles.attributeValues}>
+                    {values.length > 0 ? (
+                      values.map((val) => <li key={`${attr.id}-${val}`}>{val}</li>)
+                    ) : (
+                      <li>—</li>
+                    )}
+                  </ul>
                 </div>
               );
             })}
@@ -94,6 +100,13 @@ const SingleProductCard: React.FC<SingleProductCardProps> = ({ product }) => {
             <strong>Опис:</strong> {product.description}
           </p>
         )}
+
+        {/* Good-to-know bullets to reinforce brand vibe */}
+        <ul className={styles.goodToKnow}>
+          <li>Hand‑poured in small batches</li>
+          <li>Balanced fragrance — cozy, elegant, long‑lasting</li>
+          <li>Natural wax blend • clean burn</li>
+        </ul>
 
         <div className={styles.priceWrapper}>
           {product.comparePrice && product.comparePrice > product.price && (
