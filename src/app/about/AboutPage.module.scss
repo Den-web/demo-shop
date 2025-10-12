@@ -243,7 +243,8 @@
   max-width: 1230px;
   height: 490px;
   margin: 0 auto;
-  margin-top: 24px; // add visual gap above the banner shadow
+  margin-top: 48px; // larger top spacing for nicer breathing room
+  margin-bottom: 24px; // separation from CTA
   border-radius: 24px;
   overflow: hidden;
   padding-top: 96px; // larger gap from cards; banner breathes
