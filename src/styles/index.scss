@@ -66,6 +66,9 @@ button {
   }
 }
 
+/* Ensure any top-level containers inside main can host separators */
+main > .container { position: relative; }
+
 /* Section rhythm and visual dividers */
 section.container {
   padding-top: 40px;
