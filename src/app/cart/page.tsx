@@ -1,7 +1,6 @@
 import styles from "./CartPage.module.scss";
 import CartItems from "@/components/CartItems/CartItems";
 import CartSummary from "@/components/CartSummary/CartSummary";
-import HighlightText from "@/components/HighLightText/HighLightText";
 import "@/styles/index.scss";
 import type { Metadata } from "next";
 

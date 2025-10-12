@@ -64,9 +64,9 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  border-radius: 10px;
+  border-radius: 12px;
   overflow: hidden;
-  max-width: 1224px;
+  max-width: 1200px;
   height: 512px;
   gap: 70px;
   z-index: 10;
@@ -93,9 +93,9 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border-radius: 20px;
+  border-radius: 12px;
   border: $main-border;
-  transition: opacity 0.5s ease-out;
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out, box-shadow 0.2s ease-out;
 
   @include mobile {
     max-width: 49%;
@@ -142,7 +142,8 @@
 
   &.active {
     opacity: 1;
-    background: $primary-yellow;
+    transform: scale(1.03);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   }
 }
 
@@ -182,7 +183,9 @@
 
   img {
     width: 100%;
-    height: 68%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
 
     @include mobile {
       width: 100%;
@@ -233,15 +236,26 @@
     top: 45%;
     color: white;
     border: none;
-    padding: 10px;
+    padding: 0;
     cursor: pointer;
     font-size: 1.5rem;
     z-index: 2;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.06);
+    backdrop-filter: blur(6px);
+    transition: background 0.2s ease;
 
     @include mobile {
       width: 40px;
       height: 40px;
     }
+  }
+
+  .arrowLeft:hover,
+  .arrowRight:hover {
+    background: rgba(0, 0, 0, 0.12);
   }
 
   .arrowLeft {
@@ -265,17 +279,20 @@
 
 /* Иконка */
 .iconContainer {
-  height: 52px;
-  width: 52px;
+  height: 44px;
+  width: 44px;
   border-radius: 50%;
   display: flex;
   margin-right: 1px;
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: 3px;
-  right: 3px;
+  top: 8px;
+  right: 8px;
   z-index: 2;
+  transition: transform 0.15s ease;
+
+  &:hover { transform: scale(1.06); }
 
   @include mobile {
     margin: 0 auto;

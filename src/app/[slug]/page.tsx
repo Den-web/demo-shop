@@ -26,7 +26,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
           return;
         }
         setProduct(data);
-      } catch (error) {
+      } catch {
         setError(true);
       } finally {
         setLoading(false);

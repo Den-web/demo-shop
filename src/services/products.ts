@@ -8,7 +8,7 @@ const RAW_BASE = (process.env.NEXT_PUBLIC_API_BASE_URL || "/api").replace(/\/+$/
 const API_BASE = typeof window !== "undefined" ? "/api" : RAW_BASE;
 
 interface FetchOptions extends RequestInit {
-  body?: any;
+  body?: unknown;
 }
 
 // Универсальный fetch
@@ -35,7 +35,7 @@ async function apiFetch<T>(
     );
   }
 
-  return response.json();
+  return response.json() as Promise<T>;
 }
 
 // ============================
@@ -87,7 +87,37 @@ export interface Order {
 // ============================
 // Normalizer (API → фронт)
 // ============================
-function normalizeProduct(p: any): Product {
+type RawSelectedOption = { id: string; value: string; attributeId?: string | null };
+type RawAttribute = {
+  id: string;
+  name: string;
+  key: string;
+  required: boolean;
+  values?: { id: string; value: string }[] | null;
+};
+type RawProduct = {
+  id: string;
+  name: string;
+  price?: number | string | null;
+  description?: string | null;
+  sku: string;
+  stock?: boolean | number | null;
+  status?: string;
+  mainImage?: string | null;
+  images?: string[] | null;
+  comparePrice?: number | string | null;
+  translations?: Record<string, string> | null;
+  seoTitle?: string | null;
+  seoDescription?: string | null;
+  weight?: number | null;
+  dimensions?: Record<string, unknown> | null;
+  brand?: { id: string; name: string; slug: string } | null;
+  category?: { id: string; name: string; slug: string } | null;
+  attributes?: RawAttribute[] | null;
+  selectedOptions?: RawSelectedOption[] | null;
+};
+
+function normalizeProduct(p: RawProduct): Product {
   // Создаем словарь selectedOptions по attributeId
   const optionsByAttrId: Record<string, { id: string; value: string }[]> = {};
 
@@ -102,19 +132,19 @@ function normalizeProduct(p: any): Product {
 
   // Detect if backend options are not linked to attributes (no attributeId fields)
   const optionsLackAttributeLink = Array.isArray(p.selectedOptions)
-    ? p.selectedOptions.every((opt: any) => opt.attributeId == null)
+    ? p.selectedOptions.every((opt) => opt.attributeId == null)
     : false;
 
   return {
     id: p.id,
     name: p.name,
-    price: Number(p.price) || 0,
+    price: Number(p.price ?? 0) || 0,
     description: p.description,
     sku: p.sku,
     stock: Boolean(p.stock),
     status: p.status,
     mainImage: p.mainImage ?? "",
-    images: p.images ?? [],
+    images: Array.isArray(p.images) ? p.images : [],
     comparePrice: p.comparePrice ? Number(p.comparePrice) : undefined,
     translations: p.translations,
     seoTitle: p.seoTitle,
@@ -136,27 +166,27 @@ function normalizeProduct(p: any): Product {
         }
       : null,
       attributes: Array.isArray(p.attributes)
-      ? p.attributes.map((attr: any) => ({
+      ? p.attributes.map((attr) => ({
           id: attr.id,
           name: attr.name,
           key: attr.key,
           required: attr.required,
           // Prefer explicit values from API if present; fallback to selectedOptions mapping
           values: Array.isArray(attr.values) && attr.values.length
-            ? attr.values.map((v: any) => ({ id: v.id, value: v.value }))
+            ? attr.values.map((v) => ({ id: v.id, value: v.value }))
             : (
                 // If options are not linked by attributeId and there is only one attribute,
                 // assign all selectedOptions to this single attribute.
                 optionsLackAttributeLink && Array.isArray(p.attributes) && p.attributes.length === 1
                   ? (p.selectedOptions ?? [])
-                  : (p.selectedOptions ?? []).filter((opt: any) => opt.attributeId === attr.id)
-              ).map((opt: any) => ({ id: opt.id, value: opt.value })),
+                  : (p.selectedOptions ?? []).filter((opt) => opt.attributeId === attr.id)
+              ).map((opt) => ({ id: opt.id, value: opt.value })),
         }))
       : [],
     
     
     selectedOptions: Array.isArray(p.selectedOptions)
-      ? p.selectedOptions.map((opt: any) => ({
+      ? p.selectedOptions.map((opt) => ({
           id: opt.id,
           value: opt.value,
         }))
@@ -171,8 +201,8 @@ function normalizeProduct(p: any): Product {
 
 // Все продукты
 export async function fetchProducts(): Promise<Product[]> {
-  const raw = await apiFetch<any>(`/products`);
-  const products = raw.products ?? raw.data;
+  const raw = await apiFetch<{ products?: RawProduct[]; data?: RawProduct[] }>(`/products`);
+  const products: RawProduct[] | undefined = raw.products ?? raw.data;
 
   if (!products) {
     throw new Error("Invalid response format: no products");
@@ -185,8 +215,10 @@ export async function fetchProducts(): Promise<Product[]> {
 export async function fetchProductById(id: string): Promise<Product | null> {
   // Try detailed endpoint first
   try {
-    const raw = await apiFetch<any>(`/products/${encodeURIComponent(id)}`);
-    const p = raw.data ?? raw.product ?? raw;
+    const raw = await apiFetch<{ data?: RawProduct; product?: RawProduct } | RawProduct>(`/products/${encodeURIComponent(id)}`);
+    const p = (typeof raw === "object" && raw !== null && "id" in raw)
+      ? (raw as RawProduct)
+      : (raw as { data?: RawProduct; product?: RawProduct }).data ?? (raw as { data?: RawProduct; product?: RawProduct }).product;
     if (p) {
       const normalized = normalizeProduct(p);
       // If attributes are present, use it; otherwise fallback to list

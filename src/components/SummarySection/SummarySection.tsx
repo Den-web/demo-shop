@@ -17,7 +17,7 @@ const SummarySection = () => {
 
   const [formData, setFormData] = useState<Partial<Address>>({});
   const [loading, setLoading] = useState(false);
-  const formRef = useRef<any>(null);
+  const formRef = useRef<{ triggerValidation: () => Promise<boolean> } | null>(null);
 
   const getItemPrice = (item: { product: Product }) => item.product.price || 0;
 
@@ -131,7 +131,7 @@ const SummarySection = () => {
 
       <SummaryForm
         ref={formRef}
-        onFormChange={(data: Partial<Address>, isValid: boolean) => setFormData(data)}
+        onFormChange={(data: Partial<Address>) => setFormData(data)}
       />
 
       <div className={styles.buttonPlaceholder}>

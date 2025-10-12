@@ -62,7 +62,7 @@ const CatalogProductCard: React.FC<ProductCardProps> = ({ products }) => {
 
   const renderDescription = () => {
     if (!currentProduct) return null;
-    const text = currentProduct.description ?? (currentProduct as any).seoDescription ?? "";
+    const text = currentProduct.description ?? currentProduct.seoDescription ?? "";
     return (
       <div className={styles.descriptionContainer}>
         <p>{text}</p>
@@ -218,7 +218,7 @@ const CatalogProductCard: React.FC<ProductCardProps> = ({ products }) => {
           )
         };
       }),
-    [allProducts, currentIndex, isMobile, handleAddToCart, addedImpact, quantity]
+    [allProducts, currentIndex, isMobile, handleAddToCart, addedImpact, quantity, isFavorite, toggleFavorite]
   );
 
   const swipeHandlers = useSwipeable({

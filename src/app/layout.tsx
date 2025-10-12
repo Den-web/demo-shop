@@ -2,7 +2,7 @@ import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import { CartProvider } from "@/context/CartContext";
 import { FavoritesProvider } from "@/context/FavoritesContext";
-import { Tenor_Sans, MonteCarlo } from "next/font/google"; // меняем шрифты
+import { Tenor_Sans } from "next/font/google"; // меняем шрифты
 import "@/styles/reset.scss";
 import type { Metadata, Viewport } from "next";
 
@@ -12,11 +12,7 @@ const tenorSans = Tenor_Sans({
   weight: "400",
 });
 
-// Точечный шрифт для заголовков
-const monteCarlo = MonteCarlo({
-  weight: "400",
-  subsets: ["latin"],
-});
+// Точечный шрифт для заголовков (не используется сейчас)
 
 export const viewport: Viewport = {
   width: "device-width",

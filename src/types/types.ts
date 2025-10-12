@@ -53,11 +53,11 @@ export interface Product {
   images: string[];
 
   comparePrice?: number;
-  translations?: Record<string, any>;
+  translations?: Record<string, string>;
   seoTitle?: string | null;
   seoDescription?: string | null;
   weight?: number | null;
-  dimensions?: Record<string, any> | null;
+  dimensions?: Record<string, unknown> | null;
 
   brand?: ProductBrand | null;
   category?: ProductCategory | null;
