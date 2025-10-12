@@ -53,6 +53,7 @@
   max-width: 1230px;
   margin: 0 auto;
   height: auto;
+  margin-bottom: 24px; // give breathing room before next block
 
   @media (max-width: $breakpoint-mobile) {
     flex-direction: column;
@@ -94,6 +95,7 @@
 .values {
   max-width: 1230px;
   margin: 0 auto 0;
+  padding-top: 48px; // extra space after separator so blocks don't stick together
 }
 
 .valuesTitle {
