@@ -19,18 +19,30 @@
 }
 
 .featuresTitle {
-  display:block;
-  font-size: 48px;
-  font-weight: 400;
-  text-align: left;
-  padding-left: 20px;
-  margin-bottom: 40px;
+  position: relative;
+  z-index: 3;
+  display: block;
+  margin-top: 80px;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: clamp(24px, 2.6vw, 40px);
+  font-weight: 600;
+  color: #1a1a1a;
+
+  &::after {
+    content: "";
+    display: block;
+    width: 64px;
+    height: 3px;
+    margin-top: 10px;
+    background: $accent-500;
+    border-radius: 2px;
+  }
 
   @media (max-width: $breakpoint-mobile) {
-    font-size: 30px;
     text-align: center;
     padding: 0;
-
   }
 }
 
