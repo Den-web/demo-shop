@@ -183,7 +183,7 @@ const CatalogProductCard: React.FC<ProductCardProps> = ({ products }) => {
               </div>
             </Link>
           ) : (
-            <div key={product.id} className={styles.slide}>
+            <div key={product.id} className={styles.slide} aria-hidden="true">
               <button
                 type="button"
                 className={styles.iconContainer}
