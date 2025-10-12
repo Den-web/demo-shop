@@ -12,12 +12,12 @@ import BurgerBtn from "../BurgerBtn/BurgerBtn";
 import { useScrollHeader } from "@/hooks/useScrollHeader";
 
 const Header = () => {
-  const isHeaderVisible = useScrollHeader();
+  const { isHeaderVisible, isScrolled } = useScrollHeader();
   const { favorites } = useFavorites();
 
   return (
     <header
-      className={`${styles.header} ${!isHeaderVisible ? styles.hidden : ""}`}
+      className={`${styles.header} ${!isHeaderVisible ? styles.hidden : ""} ${isScrolled ? styles.scrolled : ""}`}
     >
       <div className="container">
         <div className={styles.content}>
