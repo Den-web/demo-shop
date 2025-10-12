@@ -54,17 +54,7 @@ const SingleProductCard: React.FC<SingleProductCardProps> = ({ product }) => {
       <div className={styles.infoContainer}>
         <h1 className={styles.productName}>{product.name}</h1>
 
-        {product.brand && (
-          <p className={styles.infoItem}>
-            <strong>Бренд:</strong> {product.brand.name}
-          </p>
-        )}
-
-        {product.category && (
-          <p className={styles.infoItem}>
-            <strong>Категорія:</strong> {product.category.name}
-          </p>
-        )}
+        {/* Основні параметри показуємо в таблиці нижче, без дублювання тут */}
 
         {/* Specs table like a product sheet */}
         <div className={styles.specTable}>
@@ -99,9 +89,7 @@ const SingleProductCard: React.FC<SingleProductCardProps> = ({ product }) => {
           )}
         </div>
 
-        <p className={styles.infoItem}>
-          <strong>Артикул (SKU):</strong> {product.sku}
-        </p>
+        {/* SKU теж входить до таблиці нижче */}
 
         {product.description && (
           <p className={styles.infoItem}>
