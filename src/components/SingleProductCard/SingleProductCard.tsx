@@ -59,29 +59,54 @@ const SingleProductCard: React.FC<SingleProductCardProps> = ({ product }) => {
         {/* Specs table like a product sheet */}
         <div className={styles.specTable}>
           <h3 className={styles.specTitle}>Основна інформація</h3>
-          {[
-            { label: "Бренд", value: product.brand?.name ?? "—" },
-            { label: "Категорія", value: product.category?.name ?? "—" },
-            { label: "Артикул (SKU)", value: product.sku ?? "—" },
-            { label: "Наявність", value: product.stock ? "В наявності" : "Немає" },
-          ].map((row) => (
-            <div className={styles.specRow} key={row.label}>
-              <span className={styles.specName}>{row.label}</span>
-              <span className={styles.specDots} aria-hidden="true" />
-              <span className={styles.specValue}>{row.value}</span>
-            </div>
-          ))}
+          <div className={styles.specRow}>
+            <span className={styles.specName}>Бренд</span>
+            <span className={styles.specValue}>{product.brand?.name ?? "—"}</span>
+          </div>
+          <div className={styles.specRow}>
+            <span className={styles.specName}>Категорія</span>
+            <span className={styles.specValue}>{product.category?.name ?? "—"}</span>
+          </div>
+          <div className={styles.specRow}>
+            <span className={styles.specName}>Артикул (SKU)</span>
+            <span className={styles.specValue}>{product.sku ?? "—"}</span>
+          </div>
+          <div className={styles.specRow}>
+            <span className={styles.specName}>Наявність</span>
+            <span className={styles.specValue}>
+              <span
+                className={`${styles.valuePill} ${product.stock ? styles.inStock : styles.outOfStock}`}
+              >
+                {product.stock ? "В наявності" : "Немає"}
+              </span>
+            </span>
+          </div>
 
           {Array.isArray(product.attributes) && product.attributes.length > 0 && (
             <>
               <h3 className={styles.specTitle} style={{ marginTop: 16 }}>Додаткова інформація</h3>
               {product.attributes.map((attr) => {
-                const valueText = (attr.values ?? []).map((v) => v.value).filter(Boolean).join(", ");
+                const label = attr.name;
+                const values = (attr.values ?? []).map((v) => v.value).filter(Boolean);
+                const isColor = label.toLowerCase().includes("колір") || label.toLowerCase().includes("color");
                 return (
                   <div className={styles.specRow} key={attr.id}>
-                    <span className={styles.specName}>{attr.name}</span>
-                    <span className={styles.specDots} aria-hidden="true" />
-                    <span className={styles.specValue}>{valueText || "—"}</span>
+                    <span className={styles.specName}>{label}</span>
+                    <span className={styles.specValue}>
+                      {isColor ? (
+                        <ul className={styles.attributeValues}>
+                          {values.length > 0 ? (
+                            values.map((val) => (
+                              <li key={`${attr.id}-${val}`}>{val}</li>
+                            ))
+                          ) : (
+                            <li>—</li>
+                          )}
+                        </ul>
+                      ) : (
+                        <>{values.join(", ") || "—"}</>
+                      )}
+                    </span>
                   </div>
                 );
               })}

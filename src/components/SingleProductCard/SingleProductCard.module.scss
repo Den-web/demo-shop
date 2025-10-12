@@ -142,9 +142,10 @@
 .specRow {
   display: grid;
   grid-template-columns: 160px 1fr;
-  align-items: baseline;
+  align-items: center;
   column-gap: 12px;
-  padding: 6px 0;
+  padding: 10px 0;
+  border-bottom: 1px dashed rgba(0,0,0,.15);
 }
 
 .specName {
@@ -153,17 +154,23 @@
   opacity: .9;
 }
 
-.specDots {
-  grid-column: 1 / span 2;
-  height: 1px;
-  background: repeating-linear-gradient(to right, rgba(0,0,0,.15) 0 4px, transparent 4px 8px);
-  margin: 4px 0;
-}
+.specDots { display: none; }
 
 .specValue {
   grid-column: 2;
   font-size: 14px;
 }
+
+.valuePill {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  border: 1px solid #d6cfcf;
+}
+.inStock { background: #eef8f0; color: #2e7d32; border-color: #b9e1c0; }
+.outOfStock { background: #fff2f2; color: #c62828; border-color: #f3c1c1; }
 
 .infoItem {
   color: $black-color;
