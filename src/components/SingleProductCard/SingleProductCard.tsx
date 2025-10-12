@@ -66,30 +66,38 @@ const SingleProductCard: React.FC<SingleProductCardProps> = ({ product }) => {
           </p>
         )}
 
-        {/* Pretty attributes grid with chips */}
-        {Array.isArray(product.attributes) && product.attributes.length > 0 ? (
-          <div className={styles.attributes}>
-            {product.attributes.map((attr) => {
-              const values = (attr.values ?? []).map((v) => v.value).filter(Boolean);
-              return (
-                <div key={attr.id} className={styles.attribute}>
-                  <p><strong>{attr.name}</strong></p>
-                  <ul className={styles.attributeValues}>
-                    {values.length > 0 ? (
-                      values.map((val) => <li key={`${attr.id}-${val}`}>{val}</li>)
-                    ) : (
-                      <li>—</li>
-                    )}
-                  </ul>
-                </div>
-              );
-            })}
-          </div>
-        ) : (
-          <p>
-            <strong>Атрибути:</strong> Не вказано
-          </p>
-        )}
+        {/* Specs table like a product sheet */}
+        <div className={styles.specTable}>
+          <h3 className={styles.specTitle}>Основна інформація</h3>
+          {[
+            { label: "Бренд", value: product.brand?.name ?? "—" },
+            { label: "Категорія", value: product.category?.name ?? "—" },
+            { label: "Артикул (SKU)", value: product.sku ?? "—" },
+            { label: "Наявність", value: product.stock ? "В наявності" : "Немає" },
+          ].map((row) => (
+            <div className={styles.specRow} key={row.label}>
+              <span className={styles.specName}>{row.label}</span>
+              <span className={styles.specDots} aria-hidden="true" />
+              <span className={styles.specValue}>{row.value}</span>
+            </div>
+          ))}
+
+          {Array.isArray(product.attributes) && product.attributes.length > 0 && (
+            <>
+              <h3 className={styles.specTitle} style={{ marginTop: 16 }}>Додаткова інформація</h3>
+              {product.attributes.map((attr) => {
+                const valueText = (attr.values ?? []).map((v) => v.value).filter(Boolean).join(", ");
+                return (
+                  <div className={styles.specRow} key={attr.id}>
+                    <span className={styles.specName}>{attr.name}</span>
+                    <span className={styles.specDots} aria-hidden="true" />
+                    <span className={styles.specValue}>{valueText || "—"}</span>
+                  </div>
+                );
+              })}
+            </>
+          )}
+        </div>
 
         <p className={styles.infoItem}>
           <strong>Артикул (SKU):</strong> {product.sku}
