@@ -162,7 +162,7 @@
   display: flex;
   flex-direction: column;
   max-width: 1230px;
-  margin: 60px auto 120px;
+  margin: 40px auto 64px; // reduce bottom spacing
   text-align: center;
   padding: 48px 16px;
   align-items: center;
@@ -190,8 +190,8 @@
   position: fixed;
   right: 24px;
   bottom: 24px;
-  width: 56px;
-  height: 56px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   border: none;
   background: #8f6f6f;
@@ -200,11 +200,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
 }
 
 .backToTopIcon {
-  font-size: 20px;
-  line-height: 1;
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 12px solid #fff; // simple up arrow
 }
 .mission {
   position: relative;
