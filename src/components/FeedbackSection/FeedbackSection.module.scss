@@ -97,11 +97,11 @@
   color: #6c6c6c;
   font-size: 18px;
   line-height: 1.5;
-  margin: -28px 0 24px 20px;
+  margin: 8px 0 24px 0; // avoid overlap with heading underline
 
   @media (max-width: $breakpoint-mobile) {
     font-size: 14px;
-    margin: -12px 0 16px 0;
+    margin: 6px 0 16px 0;
     text-align: center;
   }
 }
