@@ -95,7 +95,9 @@
   justify-content: center;
   border-radius: 12px;
   border: $main-border;
-  transition: opacity 0.2s ease-out, transform 0.2s ease-out, box-shadow 0.2s ease-out;
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out, box-shadow 0.2s ease-out, filter 0.2s ease-out;
+  opacity: 0.6;
+  transform: scale(0.97);
 
   @include mobile {
     max-width: 49%;
@@ -175,6 +177,26 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  // Edge fade masks
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 96px;
+    pointer-events: none;
+    z-index: 2;
+  }
+  &::before {
+    left: 0;
+    background: linear-gradient(to right, $white-color 0%, rgba($white-color, 0) 100%);
+  }
+  &::after {
+    right: 0;
+    background: linear-gradient(to left, $white-color 0%, rgba($white-color, 0) 100%);
+  }
 
   @include mobile {
     width: 100%;
