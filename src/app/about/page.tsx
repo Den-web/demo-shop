@@ -151,7 +151,7 @@ const AboutPage = () => {
         className={styles.backToTop}
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
       >
-        <span className={styles.backToTopIcon}>˄</span>
+        <span className={styles.backToTopIcon} aria-hidden="true" />
       </button>
     </section>
   );
