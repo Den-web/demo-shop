@@ -119,6 +119,7 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
+  margin-bottom: 16px;
 
   @media (max-width: $breakpoint-laptop) {
     grid-template-columns: repeat(2, 1fr);
@@ -214,6 +215,19 @@
   margin-top: 0;
   border-radius: 24px;
   overflow: hidden;
+  padding-top: 48px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    height: 24px;
+    background: linear-gradient(180deg, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.03) 60%, rgba(0,0,0,0) 100%);
+    pointer-events: none;
+  }
 
   @media (max-width: $breakpoint-mobile) {
     height: 200px;
