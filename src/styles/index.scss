@@ -81,9 +81,10 @@ section.container + section.container::before {
   content: "";
   position: absolute;
   top: -1px;
-  left: 0;
-  right: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw; /* full-bleed across viewport */
   height: 24px;
-  background: linear-gradient(180deg, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.02) 60%, rgba(0,0,0,0) 100%);
+  background: linear-gradient(180deg, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.03) 60%, rgba(0,0,0,0) 100%);
   pointer-events: none;
 }
