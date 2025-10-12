@@ -24,7 +24,7 @@ main {
   flex-grow: 1;
   width: 100%;
   overflow: hidden;
-  gap: 64px;
+  gap: 32px;
   will-change: transform;
 
   @media (max-width: $breakpoint-mobile) {
@@ -66,12 +66,24 @@ button {
   }
 }
 
-/* Section rhythm and dividers */
+/* Section rhythm and visual dividers */
 section.container {
-  padding-top: 40px;
-  padding-bottom: 40px;
+  padding-top: 32px;
+  padding-bottom: 32px;
+  position: relative;
 }
 
+/* Gradient separator between adjacent sections */
 section.container + section.container {
-  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  position: relative;
+}
+section.container + section.container::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  right: 0;
+  height: 24px;
+  background: linear-gradient(180deg, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.02) 60%, rgba(0,0,0,0) 100%);
+  pointer-events: none;
 }
