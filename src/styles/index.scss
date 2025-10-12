@@ -88,3 +88,16 @@ section.container + section.container::before {
   background: linear-gradient(180deg, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.03) 60%, rgba(0,0,0,0) 100%);
   pointer-events: none;
 }
+
+/* Also add separator between any adjacent main children if they are containers */
+main > .container + .container::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 24px;
+  background: linear-gradient(180deg, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.03) 60%, rgba(0,0,0,0) 100%);
+  pointer-events: none;
+}
