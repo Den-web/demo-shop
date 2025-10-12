@@ -10,8 +10,9 @@ import styles from "./page.module.scss";
 import AboutSection from "@/components/AboutSection/AboutSection";
 import FeedbackSection from "@/components/FeedbackSection/FeedbackSection";
 
-const ProductCard = dynamic(
-  () => import("@/components/ProductCard3/ProductCard"),
+// Use the same slider component as on the catalog page for visual consistency
+const CatalogProductCard = dynamic(
+  () => import("@/components/CatalodProductCard/CatalogProductCard").then((mod) => mod.default),
   {
     ssr: false,
     loading: () => <div className={styles.loading}>Loading products...</div>
@@ -53,7 +54,7 @@ export const MainPageClient = () => {
         <h1>TRENDING NOW</h1>
         {" "}
         {!loading && products.length > 0 && (
-          <ProductCard products={products} showButton={true} />
+          <CatalogProductCard products={products} />
         )}
       </div>
 
