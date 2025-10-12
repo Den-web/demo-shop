@@ -24,7 +24,7 @@ main {
   flex-grow: 1;
   width: 100%;
   overflow: hidden;
-  gap: 75px;
+  gap: 64px;
   will-change: transform;
 
   @media (max-width: $breakpoint-mobile) {
@@ -64,4 +64,14 @@ button {
     max-width: $breakpoint-tablet;
     padding: 0 24px;
   }
+}
+
+/* Section rhythm and dividers */
+section.container {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+section.container + section.container {
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
 }
