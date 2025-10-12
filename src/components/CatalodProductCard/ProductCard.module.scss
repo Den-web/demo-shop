@@ -351,6 +351,14 @@
   box-sizing: border-box;
   word-wrap: break-word;
 
+  .bullets {
+    margin: 8px 0 0;
+    padding-left: 18px;
+    color: $black-color;
+    opacity: .9;
+    li { list-style: disc; margin-bottom: 4px; }
+  }
+
   @media (max-width: $breakpoint-mobile) {
     display: none;
   }

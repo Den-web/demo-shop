@@ -72,7 +72,19 @@ const CatalogProductCard: React.FC<ProductCardProps> = ({ products }) => {
 
   const renderDescription = () => (
     <div className={styles.descriptionContainer}>
-      <p>{currentProduct?.description}</p>
+      <p>
+        {currentProduct?.description}
+      </p>
+      {currentProduct?.seoDescription && (
+        <p style={{ opacity: 0.85, marginTop: 8 }}>
+          {currentProduct.seoDescription}
+        </p>
+      )}
+      <ul className={styles.bullets}>
+        <li>Natural wax blend • clean burn</li>
+        <li>Balanced fragrance • cozy atmosphere</li>
+        <li>Thoughtful design • great for gifting</li>
+      </ul>
     </div>
   );
 
