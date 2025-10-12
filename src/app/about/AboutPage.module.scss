@@ -95,7 +95,33 @@
 .values {
   max-width: 1230px;
   margin: 0 auto 0;
-  padding-top: 64px; // larger spacing from previous block
+  padding-top: 72px; // larger spacing from previous block
+  padding-bottom: 48px; // create room before next block
+  position: relative;
+
+  // Explicit separators (top and bottom) to emphasize section boundaries
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    height: 24px;
+    pointer-events: none;
+  }
+
+  // top divider
+  &::before {
+    top: -1px;
+    background: linear-gradient(180deg, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0.04) 60%, rgba(0,0,0,0) 100%);
+  }
+
+  // bottom divider
+  &::after {
+    bottom: -1px;
+    background: linear-gradient(0deg, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0.04) 60%, rgba(0,0,0,0) 100%);
+  }
 }
 
 .valuesTitle {
