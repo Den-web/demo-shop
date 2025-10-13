@@ -8,8 +8,8 @@ import type { Product } from "@/types/types";
 import SpecialTitle from "@/components/SpecialTitle/SpecialTitle";
 
 
-const ProductCard = dynamic(
-  () => import("@/components/ProductCard3/ProductCard"),
+const CatalogProductCard = dynamic(
+  () => import("@/components/CatalodProductCard/CatalogProductCard"),
   {
     ssr: false,
     loading: () => <div className={styles.loading}>Loading products...</div>
@@ -146,7 +146,7 @@ const ProcessPage = () => {
             </div>
           </div>
         </div>
-        <ProductCard products={products} />
+        {products.length > 0 && <CatalogProductCard products={products} />}
         <button
           type="button"
           aria-label="Back to top"

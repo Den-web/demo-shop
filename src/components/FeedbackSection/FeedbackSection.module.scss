@@ -8,7 +8,7 @@
   color: $black-color;
   border: $main-border;
   position: relative;
-  margin-bottom: 0;
+  margin-bottom: 84px;
   box-sizing: border-box;
 
   @media (max-width: $breakpoint-tablet) {
@@ -16,7 +16,7 @@
   }
 
   @media (max-width: $breakpoint-mobile) {
-    margin-bottom: 0;
+    margin-bottom: 64px;
     padding: 16px;
     border-radius: 48px;
     background:rgba(144, 114, 114, 0.3);

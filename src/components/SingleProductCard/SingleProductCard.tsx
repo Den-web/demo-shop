@@ -52,98 +52,98 @@ const SingleProductCard: React.FC<SingleProductCardProps> = ({ product }) => {
       </div>
 
       <div className={styles.infoContainer}>
-        <h1 className={styles.productName}>{product.name}</h1>
+        {/* Single cohesive card block (header + details + CTA) */}
+        <div className={styles.detailsCard}>
+          <div className={styles.titlePriceRow}>
+            <h1 className={styles.productName}>{product.name}</h1>
+            <span className={styles.price}>${product.price}</span>
+          </div>
+          {/* Основні параметри показуємо в таблиці нижче, без дублювання тут */}
 
-        {/* Основні параметри показуємо в таблиці нижче, без дублювання тут */}
-
-        {/* Specs table like a product sheet */}
-        <div className={styles.specTable}>
-          <h3 className={styles.specTitle}>Основна інформація</h3>
-          <div className={styles.specRow}>
-            <span className={styles.specName}>Бренд</span>
-            <span className={styles.specValue}>{product.brand?.name ?? "—"}</span>
-          </div>
-          <div className={styles.specRow}>
-            <span className={styles.specName}>Категорія</span>
-            <span className={styles.specValue}>{product.category?.name ?? "—"}</span>
-          </div>
-          <div className={styles.specRow}>
-            <span className={styles.specName}>Артикул (SKU)</span>
-            <span className={styles.specValue}>{product.sku ?? "—"}</span>
-          </div>
-          <div className={styles.specRow}>
-            <span className={styles.specName}>Наявність</span>
-            <span className={styles.specValue}>
-              <span
-                className={`${styles.valuePill} ${product.stock ? styles.inStock : styles.outOfStock}`}
-              >
-                {product.stock ? "В наявності" : "Немає"}
+          {/* Specs table like a product sheet */}
+          <div className={styles.specTable}>
+            <h3 className={styles.specTitle}>Основна інформація</h3>
+            <div className={styles.specRow}>
+              <span className={styles.specName}>Бренд</span>
+              <span className={styles.specValue}>{product.brand?.name ?? "—"}</span>
+            </div>
+            <div className={styles.specRow}>
+              <span className={styles.specName}>Категорія</span>
+              <span className={styles.specValue}>{product.category?.name ?? "—"}</span>
+            </div>
+            <div className={styles.specRow}>
+              <span className={styles.specName}>Артикул (SKU)</span>
+              <span className={styles.specValue}>{product.sku ?? "—"}</span>
+            </div>
+            <div className={styles.specRow}>
+              <span className={styles.specName}>Наявність</span>
+              <span className={styles.specValue}>
+                <span
+                  className={`${styles.valuePill} ${product.stock ? styles.inStock : styles.outOfStock}`}
+                >
+                  {product.stock ? "В наявності" : "Немає"}
+                </span>
               </span>
-            </span>
+            </div>
+
+            {Array.isArray(product.attributes) && product.attributes.length > 0 && (
+              <>
+                <h3 className={styles.specTitle} style={{ marginTop: 16 }}>Додаткова інформація</h3>
+                {product.attributes.map((attr) => {
+                  const label = attr.name;
+                  const values = (attr.values ?? []).map((v) => v.value).filter(Boolean);
+                  const isColor = label.toLowerCase().includes("колір") || label.toLowerCase().includes("color");
+                  return (
+                    <div className={styles.specRow} key={attr.id}>
+                      <span className={styles.specName}>{label}</span>
+                      <span className={styles.specValue}>
+                        {isColor ? (
+                          <ul className={styles.attributeValues}>
+                            {values.length > 0 ? (
+                              values.map((val) => (
+                                <li key={`${attr.id}-${val}`}>{val}</li>
+                              ))
+                            ) : (
+                              <li>—</li>
+                            )}
+                          </ul>
+                        ) : (
+                          <>{values.join(", ") || "—"}</>
+                        )}
+                      </span>
+                    </div>
+                  );
+                })}
+              </>
+            )}
           </div>
 
-          {Array.isArray(product.attributes) && product.attributes.length > 0 && (
-            <>
-              <h3 className={styles.specTitle} style={{ marginTop: 16 }}>Додаткова інформація</h3>
-              {product.attributes.map((attr) => {
-                const label = attr.name;
-                const values = (attr.values ?? []).map((v) => v.value).filter(Boolean);
-                const isColor = label.toLowerCase().includes("колір") || label.toLowerCase().includes("color");
-                return (
-                  <div className={styles.specRow} key={attr.id}>
-                    <span className={styles.specName}>{label}</span>
-                    <span className={styles.specValue}>
-                      {isColor ? (
-                        <ul className={styles.attributeValues}>
-                          {values.length > 0 ? (
-                            values.map((val) => (
-                              <li key={`${attr.id}-${val}`}>{val}</li>
-                            ))
-                          ) : (
-                            <li>—</li>
-                          )}
-                        </ul>
-                      ) : (
-                        <>{values.join(", ") || "—"}</>
-                      )}
-                    </span>
-                  </div>
-                );
-              })}
-            </>
+          {/* SKU теж входить до таблиці нижче */}
+
+          {product.description && (
+            <p className={styles.infoItem}>
+              <strong>Опис:</strong> {product.description}
+            </p>
           )}
+
+          {/* Good-to-know bullets to reinforce brand vibe */}
+          <ul className={styles.goodToKnow}>
+            <li>Hand‑poured in small batches</li>
+            <li>Balanced fragrance — cozy, elegant, long‑lasting</li>
+            <li>Natural wax blend • clean burn</li>
+          </ul>
+
+          <div className={styles.ctaBottom}>
+            <Button
+              size={getButtonSize()}
+              onClick={handleAddToCart}
+              className={`${styles.ctaButton} ${addedImpact ? styles.added : ""}`}
+              disabled={!product.stock || addedImpact}
+            >
+              {!product.stock ? "Out of stock" : addedImpact ? "Added!" : "ADD TO CART"}
+            </Button>
+          </div>
         </div>
-
-        {/* SKU теж входить до таблиці нижче */}
-
-        {product.description && (
-          <p className={styles.infoItem}>
-            <strong>Опис:</strong> {product.description}
-          </p>
-        )}
-
-        {/* Good-to-know bullets to reinforce brand vibe */}
-        <ul className={styles.goodToKnow}>
-          <li>Hand‑poured in small batches</li>
-          <li>Balanced fragrance — cozy, elegant, long‑lasting</li>
-          <li>Natural wax blend • clean burn</li>
-        </ul>
-
-        <div className={styles.priceWrapper}>
-          {product.comparePrice && product.comparePrice > product.price && (
-            <span className={styles.comparePrice}>${product.comparePrice}</span>
-          )}
-          <span className={styles.price}>${product.price}</span>
-        </div>
-
-        <Button
-          size={getButtonSize()}
-          onClick={handleAddToCart}
-          className={addedImpact ? styles.added : ""}
-          disabled={!product.stock || addedImpact}
-        >
-          {!product.stock ? "Out of stock" : addedImpact ? "Added!" : "ADD TO CART"}
-        </Button>
       </div>
     </div>
   );

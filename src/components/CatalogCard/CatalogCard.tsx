@@ -60,13 +60,9 @@ const CatalogCard = memo(({ product }: CatalogCardProps) => {
       <div className={styles.productDetailsContainer}>
         <header className={styles.infoContainer}>
           <h3 className={styles.productName}>{product.name}</h3>
+          <div className={styles.productPrice}>{getPrice() ? `$${getPrice()}` : "—"}</div>
         </header>
-        {/* RATING PLACEHOLDER */}
         <div className={styles.productRating}>★★★★☆ (4.5/5)</div>
-        {/* PRICE */}
-        <div className={styles.productPrice}>
-          {getPrice() ? `$${getPrice()}` : "Price on request"}
-        </div>
       </div>
     </div>
   );

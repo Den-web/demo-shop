@@ -108,21 +108,25 @@ const SummarySection = () => {
                 />
               </div>
               <div className={styles.infoContainer}>
-                <HighlightText>
-                  <p className={styles.title}>{item.product.name}</p>
-                </HighlightText>
+                <div className={styles.itemHeader}>
+                  <HighlightText>
+                    <p className={styles.title}>{item.product.name}</p>
+                  </HighlightText>
+                  <p className={styles.priceRight}>$ {getItemPrice(item)}</p>
+                </div>
                 {item.product.description && (
                   <p className={styles.description}>{item.product.description}</p>
                 )}
                 <div className={styles.controlContainer}>
-                  <p className={styles.quantity}>Quantity: {item.quantity}</p>
-                  <p className={styles.price}>$ {getItemPrice(item)}</p>
+                  <span className={styles.qtyPill}>Qty: {item.quantity}</span>
                 </div>
               </div>
             </li>
           ))}
         </ul>
       )}
+
+      <div className={styles.sectionDivider} />
 
       <div className={styles.summaryTotal}>
         <h3>Total</h3>

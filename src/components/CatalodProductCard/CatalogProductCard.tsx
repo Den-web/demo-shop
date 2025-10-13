@@ -26,8 +26,11 @@ const CatalogProductCard: React.FC<ProductCardProps> = ({ products }) => {
   const [addedImpact, setAddedImpact] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const { toggleFavorite, isFavorite } = useFavorites();
+  const [ready, setReady] = useState(false);
 
-  const newProducts = useMemo(() => products, [products]);
+  useEffect(() => setReady(true), []);
+
+  const newProducts = useMemo(() => products ?? [], [products]);
 
   const currentProduct = useMemo(() => newProducts[currentIndex] ?? null, [newProducts, currentIndex]);
 
@@ -52,15 +55,15 @@ const CatalogProductCard: React.FC<ProductCardProps> = ({ products }) => {
   }, []);
 
   const handleNext = () =>
-    setCurrentIndex((prev) => (prev + 1) % newProducts.length);
+    newProducts.length > 0 && setCurrentIndex((prev) => (prev + 1) % newProducts.length);
   const handlePrev = () =>
-    setCurrentIndex((prev) => (prev - 1 + newProducts.length) % newProducts.length);
+    newProducts.length > 0 && setCurrentIndex((prev) => (prev - 1 + newProducts.length) % newProducts.length);
 
   const handleAddToCart = useCallback(() => {
     if (!selectedSize) {
       return alert("Будь ласка, виберіть розмір!");
     }
-    if (!newProducts?.length) return;
+    if (!newProducts?.length || !currentProduct) return;
 
     // Add selected quantity to cart via context
     for (let i = 0; i < quantity; i += 1) {
@@ -219,30 +222,38 @@ const CatalogProductCard: React.FC<ProductCardProps> = ({ products }) => {
     trackMouse: true
   });
 
+  if (!newProducts.length) return null;
+
   return (
     <section className="container" {...swipeHandlers}>
       <div className={styles.card}>
         <div className={styles.carousel}>
-          <Carousel
-            animationConfig={{ tension: 100, friction: 20 }}
-            goToSlide={currentIndex}
-            offsetRadius={offsetRadius}
-            showNavigation={false}
-            slides={slides}
-          />
-          <ButtonArrow
-            className={styles.arrowLeft}
-            icon="left"
-            onClick={handlePrev}
-          />
-          <ButtonArrow
-            className={styles.arrowRight}
-            icon="right"
-            onClick={handleNext}
-          />
+          {ready && (
+            <Carousel
+              animationConfig={{ tension: 100, friction: 20 }}
+              goToSlide={currentIndex}
+              offsetRadius={offsetRadius}
+              showNavigation={false}
+              slides={slides}
+            />
+          )}
+          {ready && (
+            <>
+              <ButtonArrow
+                className={styles.arrowLeft}
+                icon="left"
+                onClick={handlePrev}
+              />
+              <ButtonArrow
+                className={styles.arrowRight}
+                icon="right"
+                onClick={handleNext}
+              />
+            </>
+          )}
         </div>
         <div className={styles.info}>
-            <h2>{currentProduct.name}</h2>
+            <h2>{currentProduct?.name ?? ''}</h2>
           {isMobile ? (
             <>
               {renderPrice()}

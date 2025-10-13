@@ -4,7 +4,7 @@
   display: flex;
   gap: 2rem;
   margin-top: 140px;
-  margin-bottom: 20px;
+  margin-bottom: 96px;
   border-radius: 8px;
 
   @media (max-width: 768px) {
@@ -126,8 +126,33 @@
   font-size: 28px;
   font-weight: 500;
   color: $black-color;
-  margin: 0 0 8px 0;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: .04em;
 }
+
+.titlePriceRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 0 16px;
+  margin-bottom: 16px;
+  background: transparent;
+  border-radius: 0;
+  position: relative;
+}
+
+.titlePriceRow::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: rgba($accent-500, 0.12);
+}
+
 .specTitle {
   font-size: 16px;
   font-weight: 600;
@@ -255,4 +280,15 @@
     font-size: 14px;
   }
 }
+
+.detailsCard {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  padding: 20px 18px;
+}
+
+.ctaBottom { margin: 34px 0 10px; }
+
+.ctaButton { width: 100%; justify-content: center; border-radius: 9999px; padding: 16px 24px; }
 
